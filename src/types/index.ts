@@ -68,25 +68,6 @@ export interface Project {
   endDate: string;
 }
 
-export type ArchitectureCategory =
-  | "RAG System"
-  | "AI Agent"
-  | "Multi-Agent System"
-  | "Automation Workflow"
-  | "Data Pipeline"
-  | "API Integration"
-  | "Cloud Architecture";
-
-export interface ArchitectureItem {
-  id: string;
-  title: string;
-  description: string;
-  category: ArchitectureCategory;
-  diagram: string;
-  technologies: string[];
-  relatedProjectSlug: string;
-}
-
 export interface WorkflowItem {
   id: string;
   title: string;
@@ -128,19 +109,6 @@ export interface Certification {
   issuer: string;
   issuedAt: string;
   credentialUrl: string;
-  credentialId: string;
-}
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  summary: string;
-  publishedAt: string;
-  updatedAt: string;
-  tags: string[];
-  coverImage: string;
-  readingTime: string;
-  content: string[];
 }
 
 export type SocialPlatform = "GitHub" | "LinkedIn" | "Email";

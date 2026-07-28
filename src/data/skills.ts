@@ -7,6 +7,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Python", icon: "Code2" },
       { name: "TypeScript", icon: "Braces" },
+      { name: "JavaScript", icon: "FileCode2" },
     ],
   },
   {
@@ -18,6 +19,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "LLM", icon: "Bot" },
       { name: "LangChain", icon: "Network" },
       { name: "OpenAI", icon: "Orbit" },
+      { name: "Google Gemini", icon: "BrainCircuit" },
       { name: "PyTorch", icon: "Atom" },
       { name: "TensorFlow", icon: "Blocks" },
       { name: "OpenCV", icon: "SearchCode" },
@@ -30,6 +32,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "FastAPI", icon: "ServerCog" },
       { name: "REST APIs", icon: "Webhook" },
       { name: "Node.js", icon: "Blocks" },
+      { name: "Prisma", icon: "Database" },
     ],
   },
   {
@@ -38,12 +41,17 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "React", icon: "Atom" },
       { name: "Next.js", icon: "PanelsTopLeft" },
+      { name: "Tailwind CSS", icon: "Palette" },
+      { name: "Vite", icon: "Blocks" },
     ],
   },
   {
     id: "database",
     title: "Database",
-    skills: [{ name: "PostgreSQL", icon: "Database" }],
+    skills: [
+      { name: "PostgreSQL", icon: "Database" },
+      { name: "Supabase Postgres", icon: "Cylinder" },
+    ],
   },
   {
     id: "cloud-devops",
@@ -51,6 +59,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Docker", icon: "Container" },
       { name: "Vercel", icon: "CloudCog" },
+      { name: "Supabase", icon: "CloudCog" },
       { name: "GitHub Actions", icon: "GitPullRequestArrow" },
     ],
   },
@@ -72,6 +81,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Meilisearch", icon: "SearchCode" },
       { name: "Strapi CMS", icon: "Orbit" },
       { name: "Microsoft Teams", icon: "Wrench" },
+      { name: "Vitest", icon: "Wrench" },
     ],
   },
 ];

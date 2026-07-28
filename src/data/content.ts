@@ -14,11 +14,6 @@ export const sectionContent = {
     description:
       "Each project is structured around the problem, architecture, technical decisions, implementation, and verified outcomes.",
   },
-  architecture: {
-    title: "Solution architecture",
-    description:
-      "A gallery for communicating how system boundaries, data movement, AI components, and operational controls fit together.",
-  },
   workflow: {
     title: "Workflow gallery",
     description:
@@ -34,14 +29,8 @@ export const sectionContent = {
     description:
       "Keep credentials accurate and link only to verifiable sources when available.",
   },
-  blog: {
-    title: "Technical writing",
-    description:
-      "Use these articles to show how you reason about AI systems, integration patterns, and production tradeoffs.",
-  },
   contact: {
     title: "Start a conversation",
-    description:
-      "Add your real contact details when ready. The form currently validates locally and does not send data.",
+    description: "You can contact me via these channels.",
   },
 } as const;

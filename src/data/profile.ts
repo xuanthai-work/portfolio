@@ -21,11 +21,11 @@ export const profile: Profile = {
   phone: "0988820103",
   phoneUrl: "tel:+84988820103",
   resumeUrl: "/resume.pdf",
-  siteUrl: "https://your-domain.example",
+  siteUrl: "https://your-domain.example", //placeholder
   metrics: [
-    { label: "Years of Experience", value: "[Confirm total]" },
-    { label: "Projects Completed", value: "2 listed" },
-    { label: "AI Systems", value: "4 described" },
+    { label: "Years of Experience", value: "1 Year" },
+    { label: "Projects Completed", value: "5 documented" },
+    { label: "AI Systems", value: "5 described" },
     { label: "Production Deployments", value: "1 documented" },
   ],
 };

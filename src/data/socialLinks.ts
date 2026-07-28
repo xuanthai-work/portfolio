@@ -1,11 +1,15 @@
 import type { SocialLink } from "@/types";
 
 export const socialLinks: SocialLink[] = [
-  { platform: "GitHub", label: "GitHub", url: "[GitHub URL]" },
+  {
+    platform: "GitHub",
+    label: "github.com/xuanthai-work",
+    url: "https://github.com/xuanthai-work",
+  },
   {
     platform: "LinkedIn",
-    label: "linkedin.com/in/xuanthai1001",
-    url: "https://www.linkedin.com/in/xuanthai1001",
+    label: "linkedin.com/in/xuanthai",
+    url: "https://www.linkedin.com/in/bui-xuan-thai-32568337b/",
   },
   {
     platform: "Email",

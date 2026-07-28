@@ -71,9 +71,6 @@ export function EducationSection() {
                     <p className="mt-1 text-xs text-[var(--muted-foreground)]">
                       {item.issuedAt}
                     </p>
-                    <p className="mt-3 text-xs text-[var(--muted-foreground)]">
-                      {item.credentialId}
-                    </p>
                     <ExternalAction className="mt-4" href={item.credentialUrl}>
                       View credential
                     </ExternalAction>

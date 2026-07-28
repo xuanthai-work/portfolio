@@ -4,6 +4,142 @@ const placeholderImage = "/images/hero/ai-system-architecture.png";
 
 export const projects: Project[] = [
   {
+    id: "carms-fleet-dispatch",
+    slug: "carms-fleet-dispatch",
+    title: "CarMS Fleet Dispatch Platform",
+    shortDescription:
+      "A full-stack fleet dispatch system for scheduling trips, managing vehicles and staff, tracking revenue and fuel costs, and assisting operations with Gemini.",
+    fullDescription:
+      "An internal operations platform for a chauffeured car-rental business. CarMS centralizes dispatch schedules, trip legs, vehicles, staff, salary, fuel expenses, receivables, role-based access, realtime updates, and an authenticated AI assistant.",
+    businessProblem:
+      "Fleet operations required one system to coordinate vehicle schedules, multi-leg trips, staff, operating costs, payment status, and management reporting across multiple users.",
+    requirements: [
+      "Provide monthly dispatch calendars by vehicle and by tour.",
+      "Support outbound and return legs with different vehicles when required.",
+      "Track pricing, deposits, costs, profit, fuel payments, salary, and trip status.",
+      "Keep open clients synchronized when operational data changes.",
+      "Restrict financial and staff data according to authenticated user roles.",
+      "Provide an authenticated AI assistant with selectable Gemini models and optional Google Search grounding.",
+    ],
+    solution:
+      "A Next.js App Router application using server actions and services backed by Prisma, Supabase Postgres, Supabase Auth, and Supabase Realtime. Domain logic is separated into pure utilities with Vitest coverage, while an AI SDK route streams Gemini responses to the operations assistant.",
+    role: "Full-stack Developer",
+    techStack: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma 7",
+      "Supabase Postgres",
+      "Supabase Auth",
+      "Supabase Realtime",
+      "Vercel AI SDK",
+      "Google Gemini",
+      "Vitest",
+    ],
+    implementation: [
+      "Built vehicle and tour schedule views with drag-to-pan navigation and current-day positioning.",
+      "Implemented trip management for outbound and return legs, pricing, deposits, costs, profit, and status.",
+      "Added revenue, fuel expense, salary, vehicle, driver, and office staff modules.",
+      "Integrated Supabase Auth with manager and edit permissions enforced in navigation, pages, server actions, and services.",
+      "Subscribed to Supabase Postgres changes and refreshed server-rendered data across open clients.",
+      "Implemented a streaming Gemini assistant with model validation, custom instructions, Vietnam time context, and optional Google Search grounding.",
+    ],
+    technicalDecisions: [
+      "Separated server mutations from read services to respect Next.js server module constraints and keep data boundaries explicit.",
+      "Kept pure business rules in utility modules so revenue, salary, staff, AI configuration, and assistant storage logic can be tested without loading Prisma.",
+      "Used Prisma for server-side reads and writes while using Supabase Realtime only as the invalidation signal for router refresh.",
+      "Applied Row Level Security for authenticated reads while keeping writes behind server-side Prisma actions.",
+    ],
+    challenges: [
+      "Kept schedules consistent across simultaneous clients by subscribing to Postgres changes and refreshing server data without a full page reload.",
+      "Handled role-sensitive screens and actions through separate visibility and edit permission checks.",
+    ],
+    results: [
+      "Delivered one system covering dispatch, trips, vehicles, staff, revenue, fuel expenses, and salary workflows.",
+      "Added realtime multi-client synchronization and authenticated access controls.",
+      "Added automated tests for revenue, salary, staff, AI configuration, system prompt, and assistant storage logic.",
+    ],
+    lessonsLearned: ["[Add lesson learned]"],
+    architectureImage: placeholderImage,
+    coverImage: "/images/projects/carms-icon.png",
+    screenshots: [],
+    githubUrl: "https://github.com/xuanthai-work/CarMS",
+    demoUrl: "[Demo URL]",
+    caseStudyUrl: "/projects/carms-fleet-dispatch",
+    featured: true,
+    status: "in-progress",
+    startDate: "Aug 2025",
+    endDate: "Present",
+  },
+  {
+    id: "classchedule-room-rental",
+    slug: "classchedule-room-rental",
+    title: "Classchedule Room Rental Manager",
+    shortDescription:
+      "A responsive room-rental management application for bookings, recurring schedules, conflict detection, renters, revenue, and reminders.",
+    fullDescription:
+      "A web application designed for managing classroom rentals on desktop and mobile. It combines booking calendars, renter records, room-specific pricing, payment tracking, monthly revenue, reminders, and realtime synchronization.",
+    businessProblem:
+      "Room-rental operations needed a shared schedule that could prevent booking conflicts, calculate charges, track collections, and remain usable across desktop and mobile devices.",
+    requirements: [
+      "Provide a weekly calendar on desktop and a daily agenda on mobile.",
+      "Create, update, and delete bookings with weekly recurrence support.",
+      "Detect room and time conflicts.",
+      "Manage renters, notes, identifying colors, rooms, and renter-specific pricing.",
+      "Calculate monthly revenue and distinguish collected and unpaid amounts.",
+      "Show upcoming sessions, browser reminders, and operational tasks.",
+      "Synchronize changes between authenticated devices in realtime.",
+    ],
+    solution:
+      "A React and Vite client application backed by Supabase Auth, Postgres, and Realtime. The interface adapts calendar and revenue views for desktop and mobile, while Row Level Security restricts data access to authenticated users.",
+    role: "Full-stack Developer",
+    techStack: [
+      "React 18",
+      "Vite 5",
+      "JavaScript",
+      "Supabase Auth",
+      "Supabase Postgres",
+      "Supabase Realtime",
+      "Row Level Security",
+      "Vercel",
+    ],
+    implementation: [
+      "Built responsive weekly and daily booking views for desktop and mobile.",
+      "Implemented recurring bookings and room-time overlap detection.",
+      "Added renter management, room configuration, renter-specific pricing, and payment status.",
+      "Calculated monthly revenue, collected amounts, unpaid balances, and renter-level breakdowns.",
+      "Added browser notifications for upcoming rentals and a task list.",
+      "Used optimistic local updates followed by Supabase Realtime synchronization.",
+    ],
+    technicalDecisions: [
+      "Used Supabase as the authentication, database, and realtime layer to keep the client application operationally simple.",
+      "Applied Row Level Security policies to all operational tables for authenticated access.",
+      "Used separate desktop and mobile calendar presentations to preserve usability instead of compressing one dense layout.",
+      "Isolated conflict detection and date, money, and booking calculations in reusable library modules.",
+    ],
+    challenges: [
+      "Detected overlapping bookings by comparing room, date, start time, and end time, then surfaced conflicts directly in the calendar.",
+      "Kept booking, renter, room, pricing, and task data synchronized by refreshing application state on Postgres change events.",
+    ],
+    results: [
+      "Delivered booking, renter, pricing, revenue, reminder, and settings workflows in one responsive application.",
+      "Added weekly recurring bookings, conflict warnings, and realtime synchronization across devices.",
+      "Protected operational tables with authenticated Row Level Security policies.",
+    ],
+    lessonsLearned: ["[Add lesson learned]"],
+    architectureImage: placeholderImage,
+    coverImage: placeholderImage,
+    screenshots: [],
+    githubUrl: "https://github.com/xuanthai-work/Classchedule",
+    demoUrl: "[Demo URL]",
+    caseStudyUrl: "/projects/classchedule-room-rental",
+    featured: true,
+    status: "completed",
+    startDate: "Jul 2026",
+    endDate: "Jul 2026",
+  },
+  {
     id: "techvify-ai-recruitment",
     slug: "techvify-ai-recruitment",
     title: "Careers Platform and AI Recruitment Chatbot",
@@ -11,7 +147,8 @@ export const projects: Project[] = [
       "A multilingual recruitment experience with FAQ, job search, CV extraction, and CV-to-job matching.",
     fullDescription:
       "Contributed as part of the Techvify team across frontend and backend on the company's public careers website, and developed its multilingual AI recruitment chatbot using n8n and OpenAI.",
-    businessProblem: "[Add approved business context and user pain points]",
+    businessProblem:
+      "Remake the company careers website with an AI-powered recruitment experience.",
     requirements: [
       "Answer recruitment FAQs in multiple languages.",
       "Support job search through the chatbot experience.",
@@ -176,7 +313,7 @@ export const projects: Project[] = [
     ],
     solution:
       "A Python computer vision pipeline using YOLOv8 and OpenCV for answer detection and grading.",
-    role: "[Add project role]",
+    role: "Capstone project",
     techStack: ["YOLOv8", "Python", "OpenCV"],
     implementation: [
       "Labeled training data.",

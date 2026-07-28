@@ -1,6 +1,6 @@
 # AI Solution Engineer Portfolio
 
-Khung portfolio chuyên nghiệp dành cho vị trí AI Solution Engineer. Dự án tập trung vào cấu trúc nội dung, case study, solution architecture, workflow và technical writing. Thông tin hồ sơ hiện được lấy từ CV của Bui Xuan Thai; những dữ liệu CV chưa cung cấp vẫn dùng placeholder rõ ràng.
+Khung portfolio chuyên nghiệp dành cho vị trí AI Solution Engineer. Dự án tập trung vào cấu trúc nội dung, case study, solution architecture và workflow. Thông tin hồ sơ hiện được lấy từ CV của Bui Xuan Thai; những dữ liệu CV chưa cung cấp vẫn dùng placeholder rõ ràng.
 
 Không có backend hoặc database. Form liên hệ chỉ kiểm tra dữ liệu ở trình duyệt và không gửi thông tin đi đâu.
 
@@ -20,9 +20,6 @@ Không có backend hoặc database. Form liên hệ chỉ kiểm tra dữ liệu
 ```text
 src/
   app/
-    blog/
-      [slug]/
-      page.tsx
     projects/
       [slug]/
       page.tsx
@@ -31,7 +28,6 @@ src/
     sitemap.ts
     robots.ts
   components/
-    architecture/
     layout/
     projects/
     sections/
@@ -126,20 +122,6 @@ Các trường case study gồm:
 
 `slug` tạo route `/projects/[slug]`. Nên dùng slug duy nhất, chữ thường và phân tách bằng dấu gạch ngang.
 
-## Thêm architecture
-
-Mở `src/data/architectures.ts` và thêm item theo interface `ArchitectureItem`.
-
-Mỗi item hỗ trợ:
-
-- Title và description
-- Category
-- Diagram
-- Technologies
-- Related project slug
-
-Card architecture mở modal xem sơ đồ lớn. `relatedProjectSlug` cần trùng với một project hiện có.
-
 ## Thêm workflow
 
 Mở `src/data/workflows.ts` và thêm item theo interface `WorkflowItem`.
@@ -152,21 +134,6 @@ Mỗi workflow mô tả:
 - Output
 - Hình minh họa
 - Project liên quan
-
-## Thêm blog post
-
-Mở `src/data/blog.ts` và thêm object theo interface `BlogPost`.
-
-`slug` tạo route `/blog/[slug]`. Trường `content` hiện là mảng paragraph để dễ thay bằng MDX trong giai đoạn sau mà không thay đổi cấu trúc route.
-
-Nên cập nhật:
-
-- Title và summary
-- Published date và updated date
-- Tags
-- Cover image
-- Reading time
-- Content
 
 ## Thay CV
 
@@ -196,7 +163,6 @@ Các URL placeholder như `[GitHub URL]` được render ở trạng thái khôn
 public/images/projects/
 public/images/architectures/
 public/images/workflows/
-public/images/blog/
 ```
 
 Sau đó tham chiếu từ data bằng đường dẫn bắt đầu với `/images/`.
@@ -212,7 +178,7 @@ src/data/profile.ts
 src/lib/site.ts
 ```
 
-Project và blog post tạo metadata theo slug. Sitemap và robots được tạo bằng App Router metadata routes.
+Project tạo metadata theo slug. Sitemap và robots được tạo bằng App Router metadata routes.
 
 Trước khi deploy, thay `https://your-domain.example` bằng domain thật.
 
@@ -238,7 +204,7 @@ vercel
 
 - Rà soát các placeholder còn lại trong `src/data`.
 - Thay `public/resume.pdf` khi có phiên bản CV mới.
-- Thêm ảnh project, architecture, workflow và blog thật.
+- Thêm ảnh project, architecture và workflow thật.
 - Xác minh toàn bộ GitHub, LinkedIn, email, demo và credential URL.
 - Chỉ thêm số liệu thành tích có thể kiểm chứng.
 - Chạy `npm run format:check`.

@@ -7,7 +7,7 @@ export const experiences: Experience[] = [
     position: "AI Solution Engineer",
     startDate: "Jan 2026",
     endDate: "Jul 2026",
-    location: "[Add location]",
+    location: "[Add location]", //placeholder
     description:
       "Contributed to public-facing and internal AI-integrated products across frontend, backend, RAG, MCP, and workflow automation.",
     responsibilities: [
@@ -28,7 +28,7 @@ export const experiences: Experience[] = [
       "MCP",
       "Microsoft Teams",
     ],
-    achievements: ["[Add verified achievement]"],
+    achievements: ["[Add verified achievement]"], //placeholder
   },
   {
     id: "vnpt-media-data-engineer-intern",
@@ -36,7 +36,7 @@ export const experiences: Experience[] = [
     position: "Data Engineer Intern",
     startDate: "Sep 2024",
     endDate: "Dec 2024",
-    location: "[Add location]",
+    location: "[Add location]", //placeholder
     description:
       "Worked with telecommunications datasets through exploratory analysis, statistical analysis, and feature engineering.",
     responsibilities: [
@@ -49,7 +49,7 @@ export const experiences: Experience[] = [
       "Statistical Analysis",
       "Feature Engineering",
     ],
-    achievements: ["[Add verified achievement]"],
+    achievements: ["[Add verified achievement]"], //placeholder
   },
   {
     id: "hexogon-ai-rd-intern",
@@ -57,7 +57,7 @@ export const experiences: Experience[] = [
     position: "AI Intern, R&D Team",
     startDate: "Nov 2023",
     endDate: "Jun 2024",
-    location: "[Add location]",
+    location: "[Add location]", //placeholder
     description:
       "Supported the R&D team with web development responsibilities and Stable Diffusion research for 3D mapping projects.",
     responsibilities: [
@@ -71,6 +71,6 @@ export const experiences: Experience[] = [
       "Stable Diffusion",
       "3D Mapping",
     ],
-    achievements: ["[Add verified achievement]"],
+    achievements: ["[Add verified achievement]"], //placeholder
   },
 ];

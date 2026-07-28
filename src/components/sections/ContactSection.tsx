@@ -7,7 +7,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import { ContactForm } from "@/components/sections/ContactForm";
 import { Container } from "@/components/ui/Container";
 import { ExternalAction } from "@/components/ui/ExternalAction";
 import { Reveal } from "@/components/ui/Reveal";
@@ -75,20 +74,13 @@ export function ContactSection() {
     <section className="scroll-mt-20 py-20 sm:py-24" id="contact">
       <Container>
         <SectionHeading {...sectionContent.contact} />
-        <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-          <Reveal>
-            <div className="grid gap-4">
-              {contactDetails.map((detail) => (
-                <ContactDetailItem key={detail.label} {...detail} />
-              ))}
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-7">
-              <ContactForm />
-            </div>
-          </Reveal>
-        </div>
+        <Reveal>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {contactDetails.map((detail) => (
+              <ContactDetailItem key={detail.label} {...detail} />
+            ))}
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

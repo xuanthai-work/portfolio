@@ -27,7 +27,7 @@ export const sectionContent = {
   education: {
     title: "Education and certifications",
     description:
-      "Keep credentials accurate and link only to verifiable sources when available.",
+      "Formal education and continuous learning across AI, software engineering, and product delivery.",
   },
   contact: {
     title: "Start a conversation",

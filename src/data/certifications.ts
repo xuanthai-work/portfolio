@@ -81,5 +81,3 @@ export const certifications: Certification[] = [
       "https://coursera.org/share/a224893a099bfbed11ffa615739132bd",
   },
 ];
-
-//placeholder

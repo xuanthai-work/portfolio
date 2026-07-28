@@ -24,7 +24,7 @@ export const profile: Profile = {
   siteUrl: "https://your-domain.example", //placeholder
   metrics: [
     { label: "Years of Experience", value: "1 Year" },
-    { label: "Projects Completed", value: "5 documented" },
+    { label: "Projects Completed", value: "6 documented" },
     { label: "AI Systems", value: "5 described" },
     { label: "Production Deployments", value: "1 documented" },
   ],

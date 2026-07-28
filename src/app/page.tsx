@@ -12,11 +12,11 @@ export default function HomePage() {
     <main>
       <HeroSection />
       <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <WorkflowSection />
       <ExperienceSection />
       <EducationSection />
+      <ProjectsSection />
+      <WorkflowSection />
+      <SkillsSection />
       <ContactSection />
     </main>
   );

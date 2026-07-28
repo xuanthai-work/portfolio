@@ -2,7 +2,7 @@
 
 Khung portfolio chuyên nghiệp dành cho vị trí AI Solution Engineer. Dự án tập trung vào cấu trúc nội dung, case study, solution architecture và workflow. Thông tin hồ sơ hiện được lấy từ CV của Bui Xuan Thai; những dữ liệu CV chưa cung cấp vẫn dùng placeholder rõ ràng.
 
-Không có backend hoặc database. Form liên hệ chỉ kiểm tra dữ liệu ở trình duyệt và không gửi thông tin đi đâu.
+Không có backend hoặc database. Khu vực liên hệ sử dụng các đường dẫn email và mạng xã hội được cấu hình trong `src/data`.
 
 ## Tech stack
 

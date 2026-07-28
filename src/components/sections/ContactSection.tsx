@@ -1,0 +1,95 @@
+import {
+  ContactRound,
+  GitBranch,
+  Mail,
+  MapPin,
+  Phone,
+  type LucideIcon,
+} from "lucide-react";
+
+import { ContactForm } from "@/components/sections/ContactForm";
+import { Container } from "@/components/ui/Container";
+import { ExternalAction } from "@/components/ui/ExternalAction";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { sectionContent } from "@/data/content";
+import { profile } from "@/data/profile";
+import { socialLinks } from "@/data/socialLinks";
+import type { SocialPlatform } from "@/types";
+
+const socialIcons: Record<SocialPlatform, LucideIcon> = {
+  GitHub: GitBranch,
+  LinkedIn: ContactRound,
+  Email: Mail,
+};
+
+interface ContactDetail {
+  label: string;
+  value: string;
+  icon: LucideIcon;
+  href?: string;
+}
+
+const contactDetails: ContactDetail[] = [
+  ...socialLinks.map((link) => ({
+    label: link.platform,
+    value: link.label,
+    href: link.url,
+    icon: socialIcons[link.platform],
+  })),
+  {
+    label: "Location",
+    value: profile.location,
+    icon: MapPin,
+  },
+  {
+    label: "Phone",
+    value: profile.phone,
+    href: profile.phoneUrl,
+    icon: Phone,
+  },
+];
+
+function ContactDetailItem({ label, value, href, icon: Icon }: ContactDetail) {
+  return (
+    <div className="flex items-center gap-4 rounded-2xl border border-[var(--border)] p-4">
+      <span className="inline-flex size-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)]">
+        <Icon aria-hidden="true" size={18} strokeWidth={1.8} />
+      </span>
+      <div>
+        <p className="text-xs text-[var(--muted-foreground)]">{label}</p>
+        {href ? (
+          <ExternalAction href={href} showIcon={false}>
+            {value}
+          </ExternalAction>
+        ) : (
+          <p className="text-sm font-semibold">{value}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export function ContactSection() {
+  return (
+    <section className="scroll-mt-20 py-20 sm:py-24" id="contact">
+      <Container>
+        <SectionHeading {...sectionContent.contact} />
+        <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <Reveal>
+            <div className="grid gap-4">
+              {contactDetails.map((detail) => (
+                <ContactDetailItem key={detail.label} {...detail} />
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-7">
+              <ContactForm />
+            </div>
+          </Reveal>
+        </div>
+      </Container>
+    </section>
+  );
+}

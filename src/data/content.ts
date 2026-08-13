@@ -22,7 +22,7 @@ export const sectionContent = {
   experience: {
     title: "Experience",
     description:
-      "Add verified roles, responsibilities, technologies, and achievements in src/data/experience.ts.",
+      "Add verified roles, responsibilities, technologies, and achievements.",
   },
   education: {
     title: "Education and certifications",

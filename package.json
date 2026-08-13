@@ -9,18 +9,23 @@
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "db:migrate": "tsx --env-file=.env.local scripts/db-migrate.ts",
+    "db:seed": "tsx --env-file=.env.local scripts/db-seed.ts",
+    "db:setup": "npm run db:migrate && npm run db:seed"
   },
   "dependencies": {
     "framer-motion": "latest",
     "lucide-react": "latest",
     "next": "16.2.12",
+    "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
+    "@types/pg": "^8.21.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
@@ -29,6 +34,7 @@
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
     "tailwindcss": "latest",
+    "tsx": "^4.23.12",
     "typescript": "latest"
   }
 }

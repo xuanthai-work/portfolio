@@ -3,10 +3,14 @@ import { Compass, Languages, Layers3 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { sectionContent } from "@/data/content";
-import { profile } from "@/data/profile";
+import { getProfile, getSectionContent } from "@/lib/portfolio-repository";
 
-export function AboutSection() {
+export async function AboutSection() {
+  const [profile, sectionContent] = await Promise.all([
+    getProfile(),
+    getSectionContent(),
+  ]);
+
   return (
     <section className="scroll-mt-20 py-20 sm:py-24" id="about">
       <Container>

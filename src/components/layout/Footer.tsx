@@ -3,12 +3,19 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { ExternalAction } from "@/components/ui/ExternalAction";
-import { footerNavigation } from "@/data/navigation";
-import { profile } from "@/data/profile";
-import { socialLinks } from "@/data/socialLinks";
+import {
+  getNavigation,
+  getProfile,
+  getSocialLinks,
+} from "@/lib/portfolio-repository";
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const [footerNavigation, profile, socialLinks] = await Promise.all([
+    getNavigation("footer"),
+    getProfile(),
+    getSocialLinks(),
+  ]);
 
   return (
     <footer className="border-t border-[var(--border)] py-10">

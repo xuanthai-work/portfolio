@@ -6,10 +6,17 @@ import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { sectionContent } from "@/data/content";
-import { featuredProjects } from "@/data/projects";
+import {
+  getFeaturedProjects,
+  getSectionContent,
+} from "@/lib/portfolio-repository";
 
-export function ProjectsSection() {
+export async function ProjectsSection() {
+  const [featuredProjects, sectionContent] = await Promise.all([
+    getFeaturedProjects(),
+    getSectionContent(),
+  ]);
+
   return (
     <section className="scroll-mt-20 py-20 sm:py-24" id="projects">
       <Container>
@@ -34,7 +41,7 @@ export function ProjectsSection() {
             </div>
           ) : (
             <EmptyState
-              description="Set featured: true on a project in src/data/projects.ts."
+              description="Mark a project as featured in the database."
               title="No featured projects yet"
             />
           )}

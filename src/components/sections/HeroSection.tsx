@@ -5,8 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { ExternalAction } from "@/components/ui/ExternalAction";
 import { Reveal } from "@/components/ui/Reveal";
 import { SafeImage } from "@/components/ui/SafeImage";
-import { profile } from "@/data/profile";
-import { socialLinks } from "@/data/socialLinks";
+import { getProfile, getSocialLinks } from "@/lib/portfolio-repository";
 
 const socialIcons = {
   GitHub: GitBranch,
@@ -14,7 +13,12 @@ const socialIcons = {
   Email: Mail,
 };
 
-export function HeroSection() {
+export async function HeroSection() {
+  const [profile, socialLinks] = await Promise.all([
+    getProfile(),
+    getSocialLinks(),
+  ]);
+
   return (
     <section
       className="relative flex min-h-[calc(100dvh-4rem)] items-center overflow-hidden py-14 sm:py-16 lg:py-20"

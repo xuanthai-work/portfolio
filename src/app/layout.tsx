@@ -3,9 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { siteConfig } from "@/lib/site";
+import { getSiteConfig } from "@/lib/site";
 
 import "./globals.css";
+
+export const dynamic = "force-dynamic";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -17,39 +19,43 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "/",
-    siteName: siteConfig.name,
-    title: siteConfig.title,
+export async function generateMetadata(): Promise<Metadata> {
+  const siteConfig = await getSiteConfig();
+
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title: {
+      default: siteConfig.title,
+      template: `%s | ${siteConfig.name}`,
+    },
     description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1536,
-        height: 1024,
-        alt: "Abstract AI system architecture",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-  },
-};
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: "/",
+      siteName: siteConfig.name,
+      title: siteConfig.title,
+      description: siteConfig.description,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1536,
+          height: 1024,
+          alt: "Abstract AI system architecture",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteConfig.title,
+      description: siteConfig.description,
+      images: [siteConfig.ogImage],
+    },
+  };
+}
 
 const themeScript = `
   try {

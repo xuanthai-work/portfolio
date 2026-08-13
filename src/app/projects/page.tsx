@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/portfolio-repository";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -12,7 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/projects" },
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getProjects();
+
   return (
     <main>
       <Container className="py-14 sm:py-20">
@@ -38,7 +40,7 @@ export default function ProjectsPage() {
             </div>
           ) : (
             <EmptyState
-              description="Add your first project in src/data/projects.ts."
+              description="Add your first project to the database."
               title="No projects yet"
             />
           )}

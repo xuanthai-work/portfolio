@@ -10,7 +10,7 @@ export function ProjectGallery({ screenshots, title }: ProjectGalleryProps) {
   if (screenshots.length === 0) {
     return (
       <EmptyState
-        description="Add screenshot paths to the project entry in src/data/projects.ts."
+        description="Add screenshot paths to this project in the database."
         title="[Add project screenshots]"
       />
     );

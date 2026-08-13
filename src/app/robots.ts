@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { profile } from "@/data/profile";
+import { getProfile } from "@/lib/portfolio-repository";
 
-export default function robots(): MetadataRoute.Robots {
+export const dynamic = "force-dynamic";
+
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const profile = await getProfile();
+
   return {
     rules: {
       userAgent: "*",

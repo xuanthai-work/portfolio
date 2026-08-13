@@ -5,10 +5,14 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { navigation } from "@/data/navigation";
-import { profile } from "@/data/profile";
+import { getNavigation, getProfile } from "@/lib/portfolio-repository";
 
-export function Header() {
+export async function Header() {
+  const [navigation, profile] = await Promise.all([
+    getNavigation("primary"),
+    getProfile(),
+  ]);
+
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[color:var(--background)/0.88] backdrop-blur-xl">
       <Container className="flex h-16 items-center gap-3">
@@ -45,7 +49,7 @@ export function Header() {
           <Download aria-hidden="true" size={16} strokeWidth={1.8} />
           Download CV
         </ButtonLink>
-        <MobileMenu />
+        <MobileMenu navigation={navigation} />
       </Container>
     </header>
   );

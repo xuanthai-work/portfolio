@@ -1,9 +1,14 @@
 import type { MetadataRoute } from "next";
 
-import { profile } from "@/data/profile";
-import { projects } from "@/data/projects";
+import { getProfile, getProjectSlugs } from "@/lib/portfolio-repository";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = "force-dynamic";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [profile, projectSlugs] = await Promise.all([
+    getProfile(),
+    getProjectSlugs(),
+  ]);
   const routes = ["", "/projects"].map((route) => ({
     url: `${profile.siteUrl}${route}`,
     lastModified: new Date(),
@@ -11,8 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  const projectRoutes = projects.map((project) => ({
-    url: `${profile.siteUrl}/projects/${project.slug}`,
+  const projectRoutes = projectSlugs.map((slug) => ({
+    url: `${profile.siteUrl}/projects/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,

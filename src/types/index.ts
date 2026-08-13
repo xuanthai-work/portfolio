@@ -118,3 +118,19 @@ export interface SocialLink {
   label: string;
   url: string;
 }
+
+export type SectionKey =
+  | "about"
+  | "skills"
+  | "projects"
+  | "workflow"
+  | "experience"
+  | "education"
+  | "contact";
+
+export interface SectionHeadingContent {
+  title: string;
+  description: string;
+}
+
+export type SectionContent = Record<SectionKey, SectionHeadingContent>;

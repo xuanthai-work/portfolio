@@ -6,10 +6,14 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { sectionContent } from "@/data/content";
-import { workflows } from "@/data/workflows";
+import { getSectionContent, getWorkflows } from "@/lib/portfolio-repository";
 
-export function WorkflowSection() {
+export async function WorkflowSection() {
+  const [workflows, sectionContent] = await Promise.all([
+    getWorkflows(),
+    getSectionContent(),
+  ]);
+
   return (
     <section className="py-20 sm:py-24" id="workflows">
       <Container>

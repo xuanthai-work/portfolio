@@ -5,10 +5,14 @@ import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { sectionContent } from "@/data/content";
-import { experiences } from "@/data/experience";
+import { getExperiences, getSectionContent } from "@/lib/portfolio-repository";
 
-export function ExperienceSection() {
+export async function ExperienceSection() {
+  const [experiences, sectionContent] = await Promise.all([
+    getExperiences(),
+    getSectionContent(),
+  ]);
+
   return (
     <section
       className="scroll-mt-20 bg-[var(--surface-muted)] py-20 sm:py-24"
@@ -77,7 +81,7 @@ export function ExperienceSection() {
           </div>
         ) : (
           <EmptyState
-            description="Add verified work history in src/data/experience.ts."
+            description="Add verified work history to the database."
             title="No experience entries yet"
           />
         )}

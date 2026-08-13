@@ -4,9 +4,13 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { navigation } from "@/data/navigation";
+import type { NavigationItem } from "@/types";
 
-export function MobileMenu() {
+interface MobileMenuProps {
+  navigation: NavigationItem[];
+}
+
+export function MobileMenu({ navigation }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 

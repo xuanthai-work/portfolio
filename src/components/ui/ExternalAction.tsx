@@ -31,7 +31,7 @@ export function ExternalAction({
       <span
         aria-disabled="true"
         className={classes}
-        title="Add a valid URL in src/data"
+        title="Add a valid URL in the database"
       >
         {children}
         {showIcon ? (

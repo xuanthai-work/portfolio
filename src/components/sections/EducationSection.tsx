@@ -4,11 +4,19 @@ import { Container } from "@/components/ui/Container";
 import { ExternalAction } from "@/components/ui/ExternalAction";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { certifications } from "@/data/certifications";
-import { sectionContent } from "@/data/content";
-import { education } from "@/data/education";
+import {
+  getCertifications,
+  getEducation,
+  getSectionContent,
+} from "@/lib/portfolio-repository";
 
-export function EducationSection() {
+export async function EducationSection() {
+  const [certifications, education, sectionContent] = await Promise.all([
+    getCertifications(),
+    getEducation(),
+    getSectionContent(),
+  ]);
+
   return (
     <section className="py-20 sm:py-24" id="education">
       <Container>

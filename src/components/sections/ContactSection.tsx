@@ -11,9 +11,11 @@ import { Container } from "@/components/ui/Container";
 import { ExternalAction } from "@/components/ui/ExternalAction";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { sectionContent } from "@/data/content";
-import { profile } from "@/data/profile";
-import { socialLinks } from "@/data/socialLinks";
+import {
+  getProfile,
+  getSectionContent,
+  getSocialLinks,
+} from "@/lib/portfolio-repository";
 import type { SocialPlatform } from "@/types";
 
 const socialIcons: Record<SocialPlatform, LucideIcon> = {
@@ -28,26 +30,6 @@ interface ContactDetail {
   icon: LucideIcon;
   href?: string;
 }
-
-const contactDetails: ContactDetail[] = [
-  ...socialLinks.map((link) => ({
-    label: link.platform,
-    value: link.label,
-    href: link.url,
-    icon: socialIcons[link.platform],
-  })),
-  {
-    label: "Location",
-    value: profile.location,
-    icon: MapPin,
-  },
-  {
-    label: "Phone",
-    value: profile.phone,
-    href: profile.phoneUrl,
-    icon: Phone,
-  },
-];
 
 function ContactDetailItem({ label, value, href, icon: Icon }: ContactDetail) {
   return (
@@ -69,7 +51,32 @@ function ContactDetailItem({ label, value, href, icon: Icon }: ContactDetail) {
   );
 }
 
-export function ContactSection() {
+export async function ContactSection() {
+  const [profile, sectionContent, socialLinks] = await Promise.all([
+    getProfile(),
+    getSectionContent(),
+    getSocialLinks(),
+  ]);
+  const contactDetails: ContactDetail[] = [
+    ...socialLinks.map((link) => ({
+      label: link.platform,
+      value: link.label,
+      href: link.url,
+      icon: socialIcons[link.platform],
+    })),
+    {
+      label: "Location",
+      value: profile.location,
+      icon: MapPin,
+    },
+    {
+      label: "Phone",
+      value: profile.phone,
+      href: profile.phoneUrl,
+      icon: Phone,
+    },
+  ];
+
   return (
     <section className="scroll-mt-20 py-20 sm:py-24" id="contact">
       <Container>

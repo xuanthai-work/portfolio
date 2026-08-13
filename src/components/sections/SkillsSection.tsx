@@ -1,11 +1,18 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { sectionContent } from "@/data/content";
-import { skillCategories } from "@/data/skills";
 import { getIcon } from "@/lib/icons";
+import {
+  getSectionContent,
+  getSkillCategories,
+} from "@/lib/portfolio-repository";
 
-export function SkillsSection() {
+export async function SkillsSection() {
+  const [skillCategories, sectionContent] = await Promise.all([
+    getSkillCategories(),
+    getSectionContent(),
+  ]);
+
   return (
     <section
       className="scroll-mt-20 bg-[var(--surface-muted)] py-20 sm:py-24"

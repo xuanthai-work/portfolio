@@ -2,8 +2,6 @@ import type { MetadataRoute } from "next";
 
 import { getProfile, getProjectSlugs } from "@/lib/portfolio-repository";
 
-export const dynamic = "force-dynamic";
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [profile, projectSlugs] = await Promise.all([
     getProfile(),

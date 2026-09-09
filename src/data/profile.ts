@@ -4,14 +4,15 @@ export const profile: Profile = {
   name: "Bui Xuan Thai",
   role: "AI Solution Engineer",
   summary:
-    "Full-stack Software Engineer building production web applications and integrating chatbots, RAG, and workflow automation into real products.",
+    "AI Solution Engineer (BA in Artificial Intelligence) building chatbots, RAG pipelines, and workflow automation — plus hands-on computer vision with YOLO and OCR — shipped as production full-stack web applications.",
   about:
-    "I build and ship production web applications with React, Next.js, TypeScript, and Python/FastAPI. My AI integration experience includes chatbots, RAG, and workflow automation using OpenAI, LangChain, and n8n.",
+    "AI Solution Engineer with a BA in Artificial Intelligence from FPT University. My core work spans chatbots, RAG pipelines, and agentic workflow automation with OpenAI, LangChain, and n8n, alongside computer vision experience with YOLO-based object detection and OCR. I bring these AI capabilities to production as full-stack web applications built with React, Next.js, TypeScript, and Python/FastAPI.",
   careerDirection:
-    "I focus on turning requirements into clean, working features backed by solid engineering, with an emphasis on AI-integrated products and reliable solution delivery.",
+    "I am growing toward end-to-end AI solution delivery: designing LLM-driven systems — RAG, agents, and automation — and shipping them as reliable production products, while continuing to deepen my computer vision and machine learning foundations.",
   specialties: [
     "Full-stack web applications",
     "RAG and agentic AI",
+    "Computer vision (YOLO, OCR)",
     "n8n workflow automation",
     "AI product integration",
   ],

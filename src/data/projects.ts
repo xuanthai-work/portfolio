@@ -258,7 +258,7 @@ export const projects: Project[] = [
     coverImage: placeholderImage,
     screenshots: [],
     githubUrl: "[GitHub URL]",
-    demoUrl: "[Demo URL]",
+    demoUrl: "https://careers.techvify.com/vi",
     caseStudyUrl: "/projects/techvify-ai-recruitment",
     featured: true,
     status: "completed",

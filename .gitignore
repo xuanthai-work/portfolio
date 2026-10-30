@@ -11,3 +11,7 @@ pnpm-debug.log*
 .DS_Store
 *.tsbuildinfo
 PLACEHOLDERS.md
+
+# Agent logs
+docs/logs/*
+!docs/logs/.gitkeep

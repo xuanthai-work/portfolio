@@ -1,31 +1,73 @@
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
+import type { AnchorHTMLAttributes } from "react";
 
 import { cn, isExternalUrl } from "@/lib/utils";
 
-const base =
-  "inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold whitespace-nowrap transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] active:translate-y-px disabled:pointer-events-none disabled:opacity-50";
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-xl text-sm font-semibold whitespace-nowrap transition duration-200 outline-none select-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-[var(--accent)] text-white hover:bg-[var(--accent-strong)] shadow-[0_10px_30px_rgba(37,99,235,0.16)]",
+        primary:
+          "bg-[var(--accent)] text-white hover:bg-[var(--accent-strong)] shadow-[0_10px_30px_rgba(37,99,235,0.16)]",
+        secondary:
+          "border border-[var(--border-strong)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)]",
+        outline:
+          "border border-[var(--border-strong)] bg-transparent hover:bg-[var(--surface-muted)] text-[var(--foreground)]",
+        ghost:
+          "text-[var(--muted-foreground)] hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)]",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:ring-destructive",
+        link: "text-[var(--accent)] underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "min-h-11 px-5",
+        sm: "min-h-9 px-3.5 text-xs rounded-lg",
+        lg: "min-h-12 px-6 text-base rounded-2xl",
+        icon: "size-10 rounded-xl p-0",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
 
-const variants = {
-  primary:
-    "bg-[var(--accent)] text-white hover:bg-[var(--accent-strong)] shadow-[0_10px_30px_rgba(37,99,235,0.16)]",
-  secondary:
-    "border border-[var(--border-strong)] bg-[var(--surface)] text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)]",
-  ghost:
-    "text-[var(--muted-foreground)] hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)]",
-};
+export interface ButtonProps
+  extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {}
 
-type Variant = keyof typeof variants;
+export function Button({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: ButtonProps) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+}
 
-interface ButtonLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface ButtonLinkProps
+  extends
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    VariantProps<typeof buttonVariants> {
   href: string;
-  variant?: Variant;
 }
 
 export function ButtonLink({
   className,
   href,
-  variant = "primary",
+  variant = "default",
+  size = "default",
   children,
   ...props
 }: ButtonLinkProps) {
@@ -33,7 +75,7 @@ export function ButtonLink({
 
   return (
     <Link
-      className={cn(base, variants[variant], className)}
+      className={cn(buttonVariants({ variant, size, className }))}
       href={href}
       rel={external ? "noreferrer" : undefined}
       target={external ? "_blank" : undefined}
@@ -44,16 +86,4 @@ export function ButtonLink({
   );
 }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: Variant;
-}
-
-export function Button({
-  className,
-  variant = "primary",
-  ...props
-}: ButtonProps) {
-  return (
-    <button className={cn(base, variants[variant], className)} {...props} />
-  );
-}
+export { buttonVariants };

@@ -34,7 +34,9 @@ export const getNavigation = cache(
     group === "primary" ? navigation : footerNavigation,
 );
 
-export const getSocialLinks = cache(async (): Promise<SocialLink[]> => socialLinks);
+export const getSocialLinks = cache(
+  async (): Promise<SocialLink[]> => socialLinks,
+);
 
 export const getSectionContent = cache(
   async (): Promise<SectionContent> => sectionContent,
@@ -51,17 +53,20 @@ export const getFeaturedProjects = cache(
 );
 
 export const getProjectBySlug = cache(
-  async (slug: string): Promise<Project | undefined> =>
-    findProjectBySlug(slug),
+  async (slug: string): Promise<Project | undefined> => findProjectBySlug(slug),
 );
 
 export const getProjectSlugs = cache(async (): Promise<string[]> =>
   projects.map(({ slug }) => slug),
 );
 
-export const getWorkflows = cache(async (): Promise<WorkflowItem[]> => workflows);
+export const getWorkflows = cache(
+  async (): Promise<WorkflowItem[]> => workflows,
+);
 
-export const getExperiences = cache(async (): Promise<Experience[]> => experiences);
+export const getExperiences = cache(
+  async (): Promise<Experience[]> => experiences,
+);
 
 export const getEducation = cache(async (): Promise<Education[]> => education);
 

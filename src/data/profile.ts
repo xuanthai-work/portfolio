@@ -2,31 +2,31 @@ import type { Profile } from "@/types";
 
 export const profile: Profile = {
   name: "Bui Xuan Thai",
-  role: "AI Solution Engineer",
+  role: "AI Engineer",
   summary:
-    "AI Solution Engineer (BA in Artificial Intelligence) building chatbots, RAG pipelines, and workflow automation — plus hands-on computer vision with YOLO and OCR — shipped as production full-stack web applications.",
+    "AI Engineer specializing in production GenAI systems and end-to-end software delivery — agentic architectures (RAG, MCP, LangChain) plus robust application engineering with FastAPI, Next.js, Docker, and PostgreSQL, backed by hands-on deep learning in PyTorch and OpenCV.",
   about:
-    "AI Solution Engineer with a BA in Artificial Intelligence from FPT University. My core work spans chatbots, RAG pipelines, and agentic workflow automation with OpenAI, LangChain, and n8n, alongside computer vision experience with YOLO-based object detection and OCR. I bring these AI capabilities to production as full-stack web applications built with React, Next.js, TypeScript, and Python/FastAPI.",
+    "AI Engineer with a BA in Artificial Intelligence from FPT University. My core work is production GenAI: agentic architectures such as RAG pipelines, MCP servers, and LangChain agents, together with the application engineering that makes them dependable — Python and FastAPI services, Next.js frontends, PostgreSQL data models, and Docker deployments. I also bring hands-on deep learning experience with PyTorch and OpenCV, and I care about turning complex AI capabilities into reliable, high-performance software products.",
   careerDirection:
-    "I am growing toward end-to-end AI solution delivery: designing LLM-driven systems — RAG, agents, and automation — and shipping them as reliable production products, while continuing to deepen my computer vision and machine learning foundations.",
+    "I am growing toward owning AI products end to end: designing LLM-driven systems — RAG, agents, and automation — and shipping them as dependable production services, while deepening the machine learning and computer vision foundations underneath them.",
   specialties: [
-    "Full-stack web applications",
-    "RAG and agentic AI",
-    "Computer vision (YOLO, OCR)",
-    "n8n workflow automation",
-    "AI product integration",
+    "Production GenAI and agentic systems",
+    "RAG, MCP, and LangChain pipelines",
+    "Full-stack delivery (FastAPI, Next.js, PostgreSQL)",
+    "Computer vision (PyTorch, OpenCV, YOLO)",
+    "DevOps for AI services (Docker, Azure, Linux)",
   ],
   languages: ["English - IELTS 6.5", "Japanese - Basic"],
   location: "Ha Dong District, Ha Noi",
   email: "xuanthai.bxt@gmail.com",
-  phone: "0988820103",
+  phone: "098-882-0103",
   phoneUrl: "tel:+84988820103",
   resumeUrl: "/resume.pdf",
   siteUrl: "https://your-domain.example", //placeholder
   metrics: [
-    { label: "Years of Experience", value: "1 Year" },
-    { label: "Projects Completed", value: "6 documented" },
-    { label: "AI Systems", value: "5 described" },
-    { label: "Production Deployments", value: "1 documented" },
+    { label: "Years in Tech", value: "3 Years" },
+    { label: "AI Roles", value: "4" },
+    { label: "Case Studies", value: "10" },
+    { label: "LLM Cost Reduction", value: "~35%" },
   ],
 };

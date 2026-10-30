@@ -8,7 +8,7 @@ import { getProjects } from "@/lib/portfolio-repository";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "[Add an SEO description for your AI solution engineering projects.]",
+    "Case studies from enterprise AI work at GAPO and Techvify, plus independent products — each documented by problem, architecture, technical decisions, and verified outcome.",
   alternates: { canonical: "/projects" },
 };
 
@@ -35,6 +35,7 @@ export default async function ProjectsPage() {
                   key={project.id}
                   priority={index === 0}
                   project={project}
+                  showFeaturedBadge
                 />
               ))}
             </div>

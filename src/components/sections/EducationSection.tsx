@@ -18,7 +18,7 @@ export async function EducationSection() {
   ]);
 
   return (
-    <section className="py-20 sm:py-24" id="education">
+    <section className="scroll-mt-20 py-20 sm:py-24" id="education">
       <Container>
         <SectionHeading {...sectionContent.education} />
         <Reveal>

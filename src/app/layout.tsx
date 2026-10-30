@@ -1,29 +1,35 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
+import { Crimson_Pro, Fraunces, JetBrains_Mono } from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { FileTreeSidebar } from "@/components/navigation/FileTreeSidebar";
+import { MobileFileTreeNav } from "@/components/navigation/MobileFileTreeNav";
+import { getProfile, getProjects } from "@/lib/portfolio-repository";
 import { getSiteConfig } from "@/lib/site";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  style: ["normal", "italic"],
+});
+
+const crimsonPro = Crimson_Pro({
+  subsets: ["latin"],
+  variable: "--font-crimson",
+  display: "swap",
+});
+
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
+  display: "swap",
 });
 
 export const dynamic = "force-dynamic";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteConfig = await getSiteConfig();
@@ -71,14 +77,20 @@ const themeScript = `
   } catch {}
 `;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [projects, profile] = await Promise.all([getProjects(), getProfile()]);
+
   return (
     <html
-      className={cn(geist.variable, geistMono.variable, jetbrainsMono.variable)}
+      className={cn(
+        fraunces.variable,
+        crimsonPro.variable,
+        jetbrainsMono.variable,
+      )}
       lang="en"
       suppressHydrationWarning
     >
@@ -92,9 +104,12 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Header />
-        <div id="main-content">{children}</div>
-        <Footer />
+        <FileTreeSidebar profile={profile} projects={projects} />
+        <MobileFileTreeNav profile={profile} projects={projects} />
+        <div className="min-h-screen lg:pl-[22rem]">
+          <main id="main-content">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

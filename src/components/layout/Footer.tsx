@@ -18,11 +18,11 @@ export async function Footer() {
   ]);
 
   return (
-    <footer className="border-t border-[var(--border)] py-10">
+    <footer className="border-t border-[var(--border)] bg-[var(--surface-muted)]/50 py-12">
       <Container>
         <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
           <div>
-            <p className="font-semibold">{profile.name}</p>
+            <p className="font-heading text-lg font-semibold">{profile.name}</p>
             <p className="mt-2 text-sm text-[var(--muted-foreground)]">
               © {year} {profile.name}. All rights reserved.
             </p>

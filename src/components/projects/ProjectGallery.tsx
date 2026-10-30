@@ -10,8 +10,8 @@ export function ProjectGallery({ screenshots, title }: ProjectGalleryProps) {
   if (screenshots.length === 0) {
     return (
       <EmptyState
-        description="Add screenshot paths to this project in the database."
-        title="[Add project screenshots]"
+        description="Screenshots are not published for this project — the interface and demo may be internal."
+        title="No screenshots available"
       />
     );
   }

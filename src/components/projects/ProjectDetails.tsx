@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { ExternalAction } from "@/components/ui/ExternalAction";
 import { SafeImage } from "@/components/ui/SafeImage";
+import { isPlaceholder } from "@/lib/utils";
 import type { Project } from "@/types";
 
 interface ProjectDetailsProps {
@@ -133,11 +134,27 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               title={project.title}
             />
           </DetailSection>
-          <DetailSection title="GitHub and Demo Links">
-            <div className="flex flex-wrap gap-6">
-              <ExternalAction href={project.githubUrl}>GitHub</ExternalAction>
-              <ExternalAction href={project.demoUrl}>Live demo</ExternalAction>
-            </div>
+          <DetailSection title="Source and Demo">
+            {isPlaceholder(project.githubUrl) &&
+            isPlaceholder(project.demoUrl) ? (
+              <p className="leading-7">
+                Internal enterprise project — source code and demo are not
+                publicly available.
+              </p>
+            ) : (
+              <div className="flex flex-wrap gap-6">
+                {isPlaceholder(project.githubUrl) ? null : (
+                  <ExternalAction href={project.githubUrl}>
+                    GitHub
+                  </ExternalAction>
+                )}
+                {isPlaceholder(project.demoUrl) ? null : (
+                  <ExternalAction href={project.demoUrl}>
+                    Live demo
+                  </ExternalAction>
+                )}
+              </div>
+            )}
           </DetailSection>
         </div>
       </Container>

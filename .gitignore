@@ -15,3 +15,7 @@ PLACEHOLDERS.md
 # Agent logs
 docs/logs/*
 !docs/logs/.gitkeep
+
+# BA workflow files
+GEMINI.md
+justdoit.md

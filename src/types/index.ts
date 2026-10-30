@@ -62,6 +62,12 @@ export interface Project {
   githubUrl: string;
   demoUrl: string;
   caseStudyUrl: string;
+  spineTitle?: string;
+  spineColor?: string;
+  spineHighlight?: string;
+  spineShadow?: string;
+  spineIcon?: string;
+  spineTagline?: string;
   featured: boolean;
   status: ProjectStatus;
   startDate: string;

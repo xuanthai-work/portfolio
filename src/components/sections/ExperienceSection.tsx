@@ -50,7 +50,11 @@ export async function ExperienceSection() {
                       {experience.description}
                     </p>
                   </div>
-                  <div className="grid gap-5 md:grid-cols-2">
+                  <div
+                    className={`grid gap-5 ${
+                      experience.achievements.length ? "md:grid-cols-2" : ""
+                    }`}
+                  >
                     <div>
                       <h4 className="text-sm font-semibold">
                         Responsibilities
@@ -61,14 +65,16 @@ export async function ExperienceSection() {
                         ))}
                       </ul>
                     </div>
-                    <div>
-                      <h4 className="text-sm font-semibold">Achievements</h4>
-                      <ul className="mt-3 grid gap-2 text-sm leading-6 text-[var(--muted-foreground)]">
-                        {experience.achievements.map((achievement) => (
-                          <li key={achievement}>{achievement}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    {experience.achievements.length ? (
+                      <div>
+                        <h4 className="text-sm font-semibold">Achievements</h4>
+                        <ul className="mt-3 grid gap-2 text-sm leading-6 text-[var(--muted-foreground)]">
+                          {experience.achievements.map((achievement) => (
+                            <li key={achievement}>{achievement}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {experience.technologies.map((technology) => (

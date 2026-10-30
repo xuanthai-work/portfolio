@@ -1,19 +1,15 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { ProjectCard } from "@/components/projects/ProjectCard";
+import { Bookshelf } from "@/components/bookshelf/Bookshelf";
 import { Container } from "@/components/ui/Container";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import {
-  getFeaturedProjects,
-  getSectionContent,
-} from "@/lib/portfolio-repository";
+import { getProjects, getSectionContent } from "@/lib/portfolio-repository";
 
 export async function ProjectsSection() {
-  const [featuredProjects, sectionContent] = await Promise.all([
-    getFeaturedProjects(),
+  const [projects, sectionContent] = await Promise.all([
+    getProjects(),
     getSectionContent(),
   ]);
 
@@ -30,19 +26,13 @@ export async function ProjectsSection() {
             <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
           </Link>
         </div>
-        <div className="mt-12">
-          {featuredProjects.length ? (
-            <div className="grid gap-6 lg:grid-cols-2">
-              {featuredProjects.map((project, index) => (
-                <Reveal delay={index * 0.06} key={project.id}>
-                  <ProjectCard project={project} priority={index === 0} />
-                </Reveal>
-              ))}
-            </div>
+        <div className="mt-10">
+          {projects.length ? (
+            <Bookshelf projects={projects} />
           ) : (
             <EmptyState
-              description="Mark a project as featured in the database."
-              title="No featured projects yet"
+              description="Add projects to the library to populate the shelf."
+              title="The shelf is empty"
             />
           )}
         </div>

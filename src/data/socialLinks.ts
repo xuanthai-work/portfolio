@@ -8,8 +8,8 @@ export const socialLinks: SocialLink[] = [
   },
   {
     platform: "LinkedIn",
-    label: "linkedin.com/in/xuanthai",
-    url: "https://www.linkedin.com/in/bui-xuan-thai-32568337b/",
+    label: "linkedin.com/in/xuanthai-bxt",
+    url: "https://www.linkedin.com/in/xuanthai-bxt/",
   },
   {
     platform: "Email",

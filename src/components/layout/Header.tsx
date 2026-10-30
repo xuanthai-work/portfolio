@@ -14,11 +14,11 @@ export async function Header() {
   ]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[color:var(--background)/0.88] backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-[color:var(--background)/0.85] backdrop-blur-md">
       <Container className="flex h-16 items-center gap-3">
         <Link
           aria-label="Go to home"
-          className="mr-auto max-w-48 truncate text-sm font-semibold tracking-[-0.02em] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:outline-none"
+          className="font-heading mr-auto max-w-48 truncate text-base font-semibold tracking-[-0.01em] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:outline-none"
           href="/"
         >
           {profile.name}
@@ -29,7 +29,7 @@ export async function Header() {
             {navigation.map((item) => (
               <li key={item.label}>
                 <Link
-                  className="rounded-lg px-2.5 py-2 text-xs font-medium text-[var(--muted-foreground)] transition hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:outline-none"
+                  className="rounded-md px-2.5 py-2 font-mono text-[10.5px] tracking-[0.14em] text-[var(--muted-foreground)] uppercase transition hover:bg-[var(--surface-muted)] hover:text-[var(--foreground)] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:outline-none"
                   href={item.href}
                 >
                   {item.label}

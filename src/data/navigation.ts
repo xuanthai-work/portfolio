@@ -1,16 +1,11 @@
 import type { NavigationItem } from "@/types";
 
 export const navigation: NavigationItem[] = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
 ];
 
 export const footerNavigation: NavigationItem[] = [
-  { label: "About", href: "/#about" },
+  { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/#contact" },
 ];

@@ -14,3 +14,4 @@ Tài liệu dự án. Task đã nghiệm thu PASS được lưu trong `tasks/`, 
 | TASK-006 | Kệ sách tương tác Painterly Bookshelf cho phần Projects                                        | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-painterly-bookshelf-projects.md)             |
 | TASK-007 | FileTree Sidebar Navigation & Painterly Layout                                                 | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-filetree-sidebar-layout.md)                  |
 | TASK-008 | Nền tảng thiết kế: bảng màu paper/ink/cam, font Instrument Serif + Inter Tight, bỏ dark mode   | 2026-11-17 | **PASS** | [link](tasks/task-008-design-foundation-palette-fonts.md)            |
+| TASK-009 | Header gọn dùng chung, gỡ điều hướng FileTree                                                  | 2026-11-17 | **PASS** | [link](tasks/task-009-site-header-remove-filetree.md)                |

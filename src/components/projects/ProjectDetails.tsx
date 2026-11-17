@@ -3,31 +3,12 @@ import Link from "next/link";
 
 import { SystemMap } from "@/components/projects/SystemMap";
 import { ExternalAction } from "@/components/ui/ExternalAction";
+import { PageSection } from "@/components/ui/PageSection";
 import { isPlaceholder } from "@/lib/utils";
 import type { Project } from "@/types";
 
 interface ProjectDetailsProps {
   project: Project;
-}
-
-function Section({
-  title,
-  children,
-  wide,
-}: {
-  title: string;
-  children: React.ReactNode;
-  wide?: React.ReactNode;
-}) {
-  return (
-    <section className="border-t border-[var(--border)] py-10">
-      <div className="grid gap-4 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10">
-        <h2 className="font-heading text-3xl leading-tight">{title}</h2>
-        <div className="min-w-0">{children}</div>
-      </div>
-      {wide ? <div className="mt-10">{wide}</div> : null}
-    </section>
-  );
 }
 
 function Points({ items }: { items: string[] }) {
@@ -89,29 +70,29 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
 
       <div className="mt-14">
         {project.fullDescription ? (
-          <Section title="Overview">
+          <PageSection title="Overview">
             <p className="max-w-3xl text-[17px] leading-8">
               {project.fullDescription}
             </p>
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.businessProblem ? (
-          <Section title="The problem">
+          <PageSection title="The problem">
             <p className="max-w-3xl text-[17px] leading-8">
               {project.businessProblem}
             </p>
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.requirements && project.requirements.length > 0 ? (
-          <Section title="Requirements">
+          <PageSection title="Requirements">
             <Points items={project.requirements} />
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.solution || project.architecture ? (
-          <Section
+          <PageSection
             title="How it's built"
             wide={
               project.architecture ? (
@@ -124,41 +105,41 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                 {project.solution}
               </p>
             ) : null}
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.implementation && project.implementation.length > 0 ? (
-          <Section title="What I did">
+          <PageSection title="What I did">
             <Points items={project.implementation} />
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.technicalDecisions && project.technicalDecisions.length > 0 ? (
-          <Section title="Key decisions">
+          <PageSection title="Key decisions">
             <Points items={project.technicalDecisions} />
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.challenges && project.challenges.length > 0 ? (
-          <Section title="Challenges">
+          <PageSection title="Challenges">
             <Points items={project.challenges} />
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.results && project.results.length > 0 ? (
-          <Section title="Outcome">
+          <PageSection title="Outcome">
             <Points items={project.results} />
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.lessonsLearned && project.lessonsLearned.length > 0 ? (
-          <Section title="Lessons learned">
+          <PageSection title="Lessons learned">
             <Points items={project.lessonsLearned} />
-          </Section>
+          </PageSection>
         ) : null}
 
         {project.techStack && project.techStack.length > 0 ? (
-          <Section title="Stack">
+          <PageSection title="Stack">
             <div className="flex flex-wrap gap-1.5">
               {project.techStack.map((tech) => (
                 <span
@@ -169,10 +150,10 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
                 </span>
               ))}
             </div>
-          </Section>
+          </PageSection>
         ) : null}
 
-        <Section title="Source & demo">
+        <PageSection title="Source & demo">
           {isPlaceholder(project.githubUrl) &&
           isPlaceholder(project.demoUrl) ? (
             <p className="max-w-3xl text-[17px] leading-8">
@@ -191,7 +172,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
               ) : null}
             </div>
           )}
-        </Section>
+        </PageSection>
       </div>
     </main>
   );

@@ -6,11 +6,11 @@ Portfolio cá nhân (AI Solution Engineer) dựng bằng Next.js 16 App Router +
 
 ## Cấu trúc thư mục
 
-- `src/app/` — App Router: `page.tsx` (trang chủ Ask), `projects/` + `projects/[slug]/`, `layout.tsx` (font, metadata, Header + Footer dùng chung), `globals.css` (CSS variables / theme tokens), `robots.ts`, `sitemap.ts`, `error.tsx`, `loading.tsx`, `not-found.tsx`.
+- `src/app/` — App Router: `page.tsx` (trang chủ Ask), `about/` (trang CV), `projects/` + `projects/[slug]/`, `layout.tsx` (font, metadata, Header + Footer dùng chung), `globals.css` (CSS variables / theme tokens), `robots.ts`, `sitemap.ts`, `error.tsx`, `loading.tsx`, `not-found.tsx`.
 - `src/components/sections/` — các section trang chủ (Hero, About, Experience, Education, Projects, Workflow, Skills, Contact).
 - `src/components/ask/` — trang chủ Ask: `AskConversation` (client), `AskAttachment`, `AskRail`.
 - `src/components/{layout,projects,bookshelf,about}/` — Header/Footer/MobileMenu, hiển thị dự án, kệ sách Projects.
-- `src/components/ui/` — primitive dùng chung (Button/ButtonLink, Card, Badge, Container, SectionHeading, Reveal, SafeImage, ExternalAction, EmptyState).
+- `src/components/ui/` — primitive dùng chung (Button/ButtonLink, Card, Badge, Container, SectionHeading, Reveal, SafeImage, ExternalAction, EmptyState, PageSection).
 - `src/data/` — toàn bộ nội dung tĩnh (profile, projects, experience, skills, workflows, education, certifications, socialLinks, navigation, content, ask).
 - `src/lib/` — `portfolio-repository.ts` (truy cập dữ liệu), `ask.ts` (resolve prompt + khớp từ khóa), `site.ts` (site config/SEO), `icons.ts`, `events.ts`, `utils.ts`.
 - `src/types/index.ts` — interface dùng chung cho dữ liệu.
@@ -41,6 +41,7 @@ Quy tắc: task nào tạo quyết định kiến trúc mới thì Dev thêm m�
 - Animation xuất hiện dùng `Reveal` (Framer Motion) và tôn trọng `useReducedMotion`.
 - Link ngoài (`https://`) mở tab mới với `rel="noreferrer"` (xử lý sẵn trong `ButtonLink`).
 - Import alias `@/*` → `src/*`; Prettier với `prettier-plugin-tailwindcss` (double quote, semicolon, trailing comma).
+- Trang nội dung dài (dự án, About) dùng chung PageSection (tiêu đề trái 14rem, nội dung phải; prop wide cho khối trải ngang; id + scroll-mt-24 cho anchor).
 
 ## Chuẩn UI
 

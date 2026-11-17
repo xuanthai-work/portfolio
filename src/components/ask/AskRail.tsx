@@ -57,6 +57,15 @@ export function AskRail({
               <ArrowRight aria-hidden="true" size={15} />
             </Link>
           </li>
+          <li className="border-b border-[var(--border)]">
+            <Link
+              className="flex min-h-11 items-center justify-between gap-3 text-[15px] text-[var(--foreground)] transition hover:text-[var(--accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:outline-none"
+              href="/about"
+            >
+              <span>About & experience</span>
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
+          </li>
           <li className="border-b border-[var(--border)] last:border-b-0">
             <a
               className="flex min-h-11 items-center justify-between gap-3 text-[15px] text-[var(--foreground)] transition hover:text-[var(--accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:outline-none"

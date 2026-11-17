@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getProfile(),
     getProjectSlugs(),
   ]);
-  const routes = ["", "/projects"].map((route) => ({
+  const routes = ["", "/projects", "/about"].map((route) => ({
     url: `${profile.siteUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

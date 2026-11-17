@@ -49,6 +49,93 @@ export const projects: Project[] = [
       "Moved generated assets to S3/MinIO and served them through a reverse-proxy streaming cache, treating generated files as production data rather than container-local state.",
       "Kept the Python layer under Pytest and Pyright so generation, pipeline, and canvas changes stay verifiable as the platform grows.",
     ],
+    architecture: {
+      start: "canvas",
+      nodes: [
+        {
+          id: "brief",
+          label: "Brief",
+          sub: "Conversational prompt",
+          col: 0,
+          row: 1,
+          decision:
+            "Decks are generated and revised from a conversational prompt instead of a form.",
+        },
+        {
+          id: "api",
+          label: "Generation API",
+          sub: "FastAPI · 16k context",
+          col: 1,
+          row: 1,
+          decision:
+            "The generation context was raised to 16,000 tokens so long briefs and existing decks can be rewritten in a single pass.",
+        },
+        {
+          id: "llm",
+          label: "LLM",
+          sub: "OpenAI-compatible",
+          col: 2,
+          row: 0,
+          decision:
+            "Conversational slide-generation endpoints run against OpenAI-compatible models.",
+        },
+        {
+          id: "errors",
+          label: "Bilingual errors",
+          sub: "EN / VI",
+          col: 2,
+          row: 2,
+          decision:
+            "LLM failures are mapped into English and Vietnamese messages users can act on, instead of raw model responses.",
+        },
+        {
+          id: "assets",
+          label: "Asset store",
+          sub: "S3 / MinIO",
+          col: 3,
+          row: 1,
+          decision:
+            "Generated files are treated as production data rather than container-local state: they live in S3/MinIO and survive container redeployments.",
+        },
+        {
+          id: "editor",
+          label: "Editor app",
+          sub: "Next.js 16 · React 19",
+          col: 1,
+          row: 3,
+          decision:
+            "A Next.js 16 and React 19 frontend renders the generated slides for editing.",
+        },
+        {
+          id: "canvas",
+          label: "Canvas engine",
+          sub: "Konva.js",
+          col: 2,
+          row: 3,
+          decision:
+            "Canvas interactions were rebuilt on Konva.js (dual-anchor resizing, sub-pixel arrow-key nudging, non-destructive card ungrouping) because generated layouts are only useful if they stay precisely editable.",
+        },
+        {
+          id: "proxy",
+          label: "Streaming cache",
+          sub: "Reverse proxy",
+          col: 3,
+          row: 3,
+          decision:
+            "Generated assets are served through a reverse-proxy streaming cache in front of object storage.",
+        },
+      ],
+      edges: [
+        { from: "brief", to: "api" },
+        { from: "api", to: "llm" },
+        { from: "api", to: "errors" },
+        { from: "api", to: "assets" },
+        { from: "editor", to: "api" },
+        { from: "editor", to: "canvas" },
+        { from: "assets", to: "proxy" },
+        { from: "proxy", to: "canvas" },
+      ],
+    },
     challenges: [
       "Container redeployments wiped ephemeral storage and destroyed generated decks: solved with an S3/MinIO asset pipeline plus reverse-proxy caching, so files outlive the container that produced them.",
       "Editor fidelity: dual-anchor resizing, sub-pixel nudging, and card ungrouping had to preserve layering and geometry instead of flattening the layout.",
@@ -126,6 +213,92 @@ export const projects: Project[] = [
       "Used Deepagents (LangGraph) for summarization so extracting decisions, topics, and action items runs as an inspectable agent flow rather than one monolithic prompt.",
       "Prompted for structured output in Vietnamese with assignee tags, making the notes directly usable in the GapoWork workspace.",
     ],
+    architecture: {
+      start: "sessions",
+      nodes: [
+        {
+          id: "calendar",
+          label: "Google Calendar",
+          sub: "Upcoming events",
+          col: 0,
+          row: 0,
+          decision:
+            "Upcoming Google Calendar events decide which meetings need a bot and when it should join.",
+        },
+        {
+          id: "scheduler",
+          label: "Scheduler",
+          sub: "APScheduler job",
+          col: 1,
+          row: 0,
+          decision:
+            "Dispatch runs in an APScheduler background job that scans calendar events, decoupling join timing from request handling.",
+        },
+        {
+          id: "bot",
+          label: "Meet bot",
+          sub: "Joins on schedule",
+          col: 2,
+          row: 0,
+          decision:
+            "Bots are dispatched to Google Meet rooms so they enter exactly when the calendar event starts.",
+        },
+        {
+          id: "webhooks",
+          label: "Webhook listeners",
+          sub: "FastAPI",
+          col: 2,
+          row: 2,
+          decision:
+            "FastAPI webhook listeners process bot lifecycle events (bot joined, audio recorded, meeting ended) as they arrive, instead of polling for changes.",
+        },
+        {
+          id: "sessions",
+          label: "Session states",
+          sub: "PostgreSQL",
+          col: 3,
+          row: 2,
+          decision:
+            "The meeting lifecycle is modelled as explicit session states driven by webhooks, so partial recordings and late joins stay consistent instead of being inferred from timestamps.",
+        },
+        {
+          id: "summarizer",
+          label: "Summarizer agent",
+          sub: "Deepagents · LangGraph",
+          col: 1,
+          row: 4,
+          decision:
+            "Summarization runs as an inspectable Deepagents (LangGraph) flow rather than one monolithic prompt, extracting decisions, topics and action items with assignee tags in Vietnamese.",
+        },
+        {
+          id: "api",
+          label: "REST API",
+          sub: "View · search · export",
+          col: 2,
+          row: 4,
+          decision:
+            "RESTful APIs let users view, search and export structured meeting summaries and transcripts.",
+        },
+        {
+          id: "gapowork",
+          label: "GapoWork",
+          sub: "Team workspace",
+          col: 3,
+          row: 4,
+          decision:
+            "Structured meeting notes are delivered into the GapoWork workspace where the team already works.",
+        },
+      ],
+      edges: [
+        { from: "calendar", to: "scheduler" },
+        { from: "scheduler", to: "bot" },
+        { from: "bot", to: "webhooks" },
+        { from: "webhooks", to: "sessions" },
+        { from: "webhooks", to: "summarizer" },
+        { from: "summarizer", to: "api" },
+        { from: "api", to: "gapowork" },
+      ],
+    },
     challenges: [
       "Meeting lifecycle: bot joined, audio recorded, and meeting ended events had to map onto consistent session states shared by the scheduler, webhook listeners, and export APIs.",
       "Vietnamese action items: extracting who owns what required structured prompting rather than free-text summarization.",
@@ -600,6 +773,92 @@ export const projects: Project[] = [
       "Exchanged Microsoft Graph On-Behalf-Of tokens from the MCP server, making retrieval permission-aware: users only reach SharePoint content they can already open.",
       "Fronted the LLM with Redis Stack semantic caching so near-duplicate questions return cached answers, cutting token spend without changing the user experience.",
     ],
+    architecture: {
+      start: "api",
+      nodes: [
+        {
+          id: "teams",
+          label: "Microsoft Teams",
+          sub: "Teams SDK client",
+          col: 0,
+          row: 2,
+          decision:
+            "Completions stream from FastAPI over Server-Sent Events, keeping perceived latency low inside the Teams client.",
+        },
+        {
+          id: "api",
+          label: "FastAPI core",
+          sub: "Hexagonal · SSE",
+          col: 1,
+          row: 2,
+          decision:
+            "Hexagonal architecture puts retrieval, citation, caching and the Teams transport behind ports, so each piece can be tested and replaced independently.",
+        },
+        {
+          id: "cache",
+          label: "Semantic cache",
+          sub: "Redis Stack",
+          col: 2,
+          row: 0,
+          decision:
+            "A Redis Stack semantic cache in front of the LLM returns cached answers for near-duplicate questions, cutting token spend without changing the user experience.",
+        },
+        {
+          id: "rag",
+          label: "RAG chain",
+          sub: "LangChain · multi-turn",
+          col: 2,
+          row: 2,
+          decision:
+            "LangChain drives multi-turn RAG over PostgreSQL with pgvector, grounding each answer in internal documents and policies.",
+        },
+        {
+          id: "citations",
+          label: "Citation scoring",
+          sub: "pgvector · elbow + threshold",
+          col: 3,
+          row: 1,
+          decision:
+            "Retrieved chunks are scored against the generated answer and filtered by elbow and threshold selection, so citations point at supporting passages instead of every retrieved chunk.",
+        },
+        {
+          id: "llm",
+          label: "LLM",
+          sub: "Chat completions",
+          col: 3,
+          row: 3,
+          decision:
+            "Chat completions stream token by token back through FastAPI to the Teams client.",
+        },
+        {
+          id: "mcp",
+          label: "MCP server",
+          sub: "Node.js",
+          col: 2,
+          row: 4,
+          decision:
+            "A Node.js MCP server exposes self-service actions and exchanges Microsoft Graph On-Behalf-Of tokens, so retrieval only reaches SharePoint content the user can already open.",
+        },
+        {
+          id: "sharepoint",
+          label: "SharePoint",
+          sub: "Microsoft Graph",
+          col: 3,
+          row: 4,
+          decision:
+            "Permission-aware retrieval is designed at the token-exchange layer; retrofitting access control after retrieval would be unsafe.",
+        },
+      ],
+      edges: [
+        { from: "teams", to: "api" },
+        { from: "api", to: "cache" },
+        { from: "api", to: "rag" },
+        { from: "api", to: "mcp" },
+        { from: "rag", to: "citations" },
+        { from: "rag", to: "llm" },
+        { from: "mcp", to: "sharepoint" },
+      ],
+    },
     challenges: [
       "Citation accuracy: similarity search alone returns plausible but unused chunks, so each retrieved chunk is scored against the generated answer and filtered by elbow and threshold selection.",
       "Enterprise permissions: document access had to inherit the signed-in user's rights, which required Microsoft Graph On-Behalf-Of token exchange from the MCP server.",

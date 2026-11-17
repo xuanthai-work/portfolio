@@ -35,6 +35,7 @@ Quy tắc: task nào tạo quyết định kiến trúc mới thì Dev thêm m�
 - Layout gốc chỉ bọc nội dung bằng `<div id="main-content">`; mỗi page tự render đúng một `<main>`, để không có landmark main lồng nhau.
 - Trang Ask trả lời theo kịch bản: câu hỏi, câu trả lời, từ khóa và phần đính kèm khai trong src/data/ask.ts; phần đính kèm trỏ tới dữ liệu có sẵn (dự án theo slug, kinh nghiệm, kỹ năng) chứ không chép nội dung. Số liệu trên thẻ dự án lấy từ Project.metrics, mỗi số phải có trong results.
 - Prompt Ask được resolve thành dữ liệu hiển thị phía server (src/lib/ask.ts, resolveAskPrompts) rồi mới truyền xuống client component, nên client không import repository/@/data; prompt trỏ tới slug không tồn tại thì bị bỏ.
+- Sơ đồ kiến trúc dự án khai trong Project.architecture theo lưới cột/hàng (col 0–3, row 0–4), không theo pixel, để giao diện tự co giãn; decision của mỗi node chỉ diễn đạt lại thông tin đã có trong technicalDecisions/implementation/solution/lessonsLearned của chính dự án.
 - Class name gộp bằng `cn()` từ `@/lib/utils`; biến thể component dùng `class-variance-authority` (xem `Button.tsx`).
 - Animation xuất hiện dùng `Reveal` (Framer Motion) và tôn trọng `useReducedMotion`.
 - Link ngoài (`https://`) mở tab mới với `rel="noreferrer"` (xử lý sẵn trong `ButtonLink`).

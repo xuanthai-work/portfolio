@@ -40,6 +40,31 @@ export interface SkillCategory {
 
 export type ProjectStatus = "placeholder" | "in-progress" | "completed";
 
+export interface ArchitectureNode {
+  id: string;
+  label: string;
+  /** Short mono caption under the label, e.g. "FastAPI · SSE". */
+  sub: string;
+  /** Grid column, 0 = leftmost. */
+  col: number;
+  /** Grid row, 0 = top. */
+  row: number;
+  /** Design decision behind this node, restating facts already in the project. */
+  decision: string;
+}
+
+export interface ArchitectureEdge {
+  from: string;
+  to: string;
+}
+
+export interface ArchitectureMap {
+  /** Node selected when the page opens. */
+  start: string;
+  nodes: ArchitectureNode[];
+  edges: ArchitectureEdge[];
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -53,6 +78,7 @@ export interface Project {
   techStack: string[];
   implementation: string[];
   technicalDecisions: string[];
+  architecture?: ArchitectureMap;
   challenges: string[];
   results: string[];
   /** Up to two headline numbers shown on project cards. Must restate a fact already in `results`. */

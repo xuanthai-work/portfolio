@@ -10,7 +10,7 @@ Portfolio cá nhân (AI Solution Engineer) dựng bằng Next.js 16 App Router +
 - `src/components/sections/` — các section trang chủ (Hero, About, Experience, Education, Projects, Workflow, Skills, Contact).
 - `src/components/{layout,projects,bookshelf,about}/` — Header/Footer/MobileMenu, hiển thị dự án, kệ sách Projects.
 - `src/components/ui/` — primitive dùng chung (Button/ButtonLink, Card, Badge, Container, SectionHeading, Reveal, SafeImage, ExternalAction, EmptyState).
-- `src/data/` — toàn bộ nội dung tĩnh (profile, projects, experience, skills, workflows, education, certifications, socialLinks, navigation, content).
+- `src/data/` — toàn bộ nội dung tĩnh (profile, projects, experience, skills, workflows, education, certifications, socialLinks, navigation, content, ask).
 - `src/lib/` — `portfolio-repository.ts` (truy cập dữ liệu), `site.ts` (site config/SEO), `icons.ts`, `events.ts`, `utils.ts`.
 - `src/types/index.ts` — interface dùng chung cho dữ liệu.
 - `public/` — ảnh, `resume.pdf` (giữ nguyên tên để link tải không hỏng).
@@ -32,6 +32,7 @@ Quy tắc: task nào tạo quyết định kiến trúc mới thì Dev thêm m�
 - Một theme sáng duy nhất (không dark mode). Bảng màu paper #f8f7f4 / ink #111111 / mist #e8e7e3 / accent #ff5a1f khai báo bằng CSS variables trong globals.css; --accent chỉ dùng cho nền, viền, icon, chữ lớn, còn chữ nhỏ và link dùng --accent-strong #c2410c để đạt tương phản 4.5:1.
 - Font: Instrument Serif cho tiêu đề (chỉ weight 400, tắt font-synthesis-weight), Inter Tight cho chữ thường, JetBrains Mono cho mono; nạp qua next/font/google trong layout.tsx.
 - Layout gốc chỉ bọc nội dung bằng `<div id="main-content">`; mỗi page tự render đúng một `<main>`, để không có landmark main lồng nhau.
+- Trang Ask trả lời theo kịch bản: câu hỏi, câu trả lời, từ khóa và phần đính kèm khai trong src/data/ask.ts; phần đính kèm trỏ tới dữ liệu có sẵn (dự án theo slug, kinh nghiệm, kỹ năng) chứ không chép nội dung. Số liệu trên thẻ dự án lấy từ Project.metrics, mỗi số phải có trong results.
 - Class name gộp bằng `cn()` từ `@/lib/utils`; biến thể component dùng `class-variance-authority` (xem `Button.tsx`).
 - Animation xuất hiện dùng `Reveal` (Framer Motion) và tôn trọng `useReducedMotion`.
 - Link ngoài (`https://`) mở tab mới với `rel="noreferrer"` (xử lý sẵn trong `ButtonLink`).

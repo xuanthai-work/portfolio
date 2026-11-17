@@ -1,5 +1,6 @@
 import { cache } from "react";
 
+import { askContent, askPrompts } from "@/data/ask";
 import { certifications } from "@/data/certifications";
 import { sectionContent } from "@/data/content";
 import { education } from "@/data/education";
@@ -15,6 +16,8 @@ import { skillCategories } from "@/data/skills";
 import { socialLinks } from "@/data/socialLinks";
 import { workflows } from "@/data/workflows";
 import type {
+  AskContent,
+  AskPrompt,
   Certification,
   Education,
   Experience,
@@ -72,4 +75,10 @@ export const getEducation = cache(async (): Promise<Education[]> => education);
 
 export const getCertifications = cache(
   async (): Promise<Certification[]> => certifications,
+);
+
+export const getAskContent = cache(async (): Promise<AskContent> => askContent);
+
+export const getAskPrompts = cache(
+  async (): Promise<AskPrompt[]> => askPrompts,
 );

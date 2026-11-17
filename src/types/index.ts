@@ -55,6 +55,8 @@ export interface Project {
   technicalDecisions: string[];
   challenges: string[];
   results: string[];
+  /** Up to two headline numbers shown on project cards. Must restate a fact already in `results`. */
+  metrics?: Metric[];
   lessonsLearned: string[];
   architectureImage: string;
   coverImage: string;
@@ -140,3 +142,31 @@ export interface SectionHeadingContent {
 }
 
 export type SectionContent = Record<SectionKey, SectionHeadingContent>;
+
+export type AskAttachment =
+  | { kind: "none" }
+  | { kind: "project"; slug: string }
+  | { kind: "projects"; slugs: string[] }
+  | { kind: "experience" }
+  | { kind: "skills" };
+
+export interface AskPrompt {
+  id: string;
+  /** Text on the suggestion chip and in the visitor's message bubble. */
+  question: string;
+  /** Lead-in sentence of the scripted answer. */
+  answer: string;
+  /** Lower-case words matched against typed questions; first prompt with a hit wins. */
+  keywords: string[];
+  attachment: AskAttachment;
+}
+
+export interface AskContent {
+  heading: string;
+  subheading: string;
+  inputPlaceholder: string;
+  /** Reply when a typed question matches no prompt. */
+  fallbackAnswer: string;
+  /** Small note under the shortcut links in the left rail. */
+  railNote: string;
+}

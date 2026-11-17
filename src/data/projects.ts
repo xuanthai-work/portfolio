@@ -59,6 +59,9 @@ export const projects: Project[] = [
       "Replaced scattered slide tooling with a single GenAI platform that generates decks and keeps them editable on a Canva-grade canvas.",
       "Eliminated generated-asset loss across container redeployments through durable object storage.",
     ],
+    metrics: [
+      { value: "Company-wide", label: "internal rollout for daily use" },
+    ],
     lessonsLearned: [
       "For AI features that produce files, object storage and caching are part of the feature, not an infrastructure afterthought.",
       "Generation quality only shows up in the editor: the canvas interaction work decided whether the output felt usable.",
@@ -132,6 +135,7 @@ export const projects: Project[] = [
       "Automated meeting documentation end-to-end, cutting post-meeting manual note-taking time by over 80%.",
       "Delivered searchable, exportable structured summaries and transcripts into the GapoWork workspace.",
     ],
+    metrics: [{ value: "80%+", label: "less post-meeting note-taking" }],
     lessonsLearned: [
       "For long-running meeting bots, an event-driven state machine is more reliable than polling for lifecycle changes.",
       "Language-aware structured output decides whether extracted action items are actually usable by the team.",
@@ -606,6 +610,10 @@ export const projects: Project[] = [
       "Achieved under 1.5s streaming time-to-first-token and cut LLM API token costs by ~35% through semantic caching.",
       "Enabled secure, permission-aware company knowledge retrieval across organization-wide Microsoft Teams channels.",
       "Delivered cited, document-grounded answers plus self-service actions without leaving Microsoft Teams.",
+    ],
+    metrics: [
+      { value: "<1.5s", label: "streaming time to first token" },
+      { value: "~35%", label: "lower LLM token cost via semantic caching" },
     ],
     lessonsLearned: [
       "Citations are a retrieval-scoring problem, not a prompt problem: filtering chunks against the actual answer matters more than asking the model to cite.",

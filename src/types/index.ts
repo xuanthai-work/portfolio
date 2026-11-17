@@ -27,7 +27,6 @@ export interface NavigationItem {
 
 export interface Skill {
   name: string;
-  icon: string;
   level?: string;
   years?: string;
 }
@@ -84,34 +83,14 @@ export interface Project {
   /** Up to two headline numbers shown on project cards. Must restate a fact already in `results`. */
   metrics?: Metric[];
   lessonsLearned: string[];
-  architectureImage: string;
   coverImage: string;
-  screenshots: string[];
   githubUrl: string;
   demoUrl: string;
-  caseStudyUrl: string;
   spineTitle?: string;
-  spineColor?: string;
-  spineHighlight?: string;
-  spineShadow?: string;
-  spineIcon?: string;
-  spineTagline?: string;
   featured: boolean;
   status: ProjectStatus;
   startDate: string;
   endDate: string;
-}
-
-export interface WorkflowItem {
-  id: string;
-  title: string;
-  description: string;
-  tool: string;
-  image: string;
-  input: string;
-  process: string;
-  output: string;
-  relatedProjectSlug: string;
 }
 
 export interface Experience {
@@ -153,14 +132,7 @@ export interface SocialLink {
   url: string;
 }
 
-export type SectionKey =
-  | "about"
-  | "skills"
-  | "projects"
-  | "workflow"
-  | "experience"
-  | "education"
-  | "contact";
+export type SectionKey = "about" | "projects" | "experience" | "contact";
 
 export interface SectionHeadingContent {
   title: string;

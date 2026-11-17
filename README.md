@@ -1,6 +1,6 @@
 # AI Solution Engineer Portfolio
 
-Website portfolio chuyên nghiệp dành cho vị trí **AI Solution Engineer**, tập trung vào cấu trúc nội dung, case study chuyên sâu, kiến trúc hệ thống AI (Solution Architecture) và quy trình làm việc (AI Workflow).
+Website portfolio chuyên nghiệp dành cho vị trí **AI Solution Engineer**, với trang chủ dạng hỏi đáp (Ask), danh mục case study, trang dự án có sơ đồ kiến trúc tương tác và trang About kiểu CV.
 
 Dữ liệu portfolio được cấu trúc rõ ràng trong `src/data/`, truy vấn qua `src/lib/portfolio-repository.ts` và render tối ưu với Next.js App Router (Server Components & React 19).
 
@@ -12,8 +12,8 @@ Dữ liệu portfolio được cấu trúc rõ ràng trong `src/data/`, truy v�
 - **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI Components**: [Base UI](https://base-ui.com/) (`@base-ui/react`), [shadcn](https://ui.shadcn.com/) (`base-lyra` preset)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/) & [Phosphor Icons](https://phosphoricons.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) (hiệu ứng hội thoại trang Ask)
+- **Icons**: [Lucide React](https://lucide.dev/)
 - **Code Quality**: ESLint, Prettier, TypeScript Compiler (`tsc`)
 
 ---
@@ -27,27 +27,27 @@ Dữ liệu portfolio được cấu trúc rõ ràng trong `src/data/`, truy v�
 ├── public/                    # Tài nguyên tĩnh
 │   ├── images/                # Hình ảnh dự án, kiến trúc hệ thống, icon
 │   └── resume.pdf             # File CV tải về
-├── scripts/                   # Scripts điều phối và tiện ích
-│   └── watch-and-inject.ps1   # Runner điều phối OpenCode Dev Agent
 ├── src/
 │   ├── app/                   # Next.js App Router
+│   │   ├── about/             # Trang giới thiệu / CV chi tiết
 │   │   ├── projects/          # Danh sách & trang chi tiết dự án ([slug])
 │   │   ├── globals.css        # CSS variables, theme tokens, Tailwind v4
 │   │   ├── layout.tsx         # Root layout, fonts, SEO metadata
-│   │   ├── page.tsx           # Trang chủ (One-page portfolio)
+│   │   ├── page.tsx           # Trang chủ Ask (hội thoại theo kịch bản)
 │   │   ├── robots.ts          # SEO robots.txt
 │   │   └── sitemap.ts         # Dynamic sitemap
 │   ├── components/            # React UI components
+│   │   ├── ask/               # AskConversation, AskAttachment, AskRail
 │   │   ├── layout/            # Header, Footer, MobileMenu
-│   │   ├── projects/          # ProjectCard, ProjectDetails, ProjectGallery
-│   │   ├── sections/          # Hero, About, Projects, Experience, Skills, Workflow...
-│   │   └── ui/                # Base UI & Custom primitives (Button, Card, Badge...)
+│   │   ├── projects/          # ProjectIndex, ProjectDetails, SystemMap
+│   │   └── ui/                # Base UI & Custom primitives (Button, Container, PageSection...)
 │   ├── data/                  # Nguồn dữ liệu nội dung tĩnh (Profile, Projects...)
-│   ├── lib/                   # Utilities, repository pattern, site config
+│   ├── lib/                   # Utilities, repository pattern, site config, ask.ts
 │   └── types/                 # TypeScript interfaces và types dùng chung
+├── AGENTS.md                  # Kiến trúc hệ thống và quyết định kỹ thuật
+├── CLAUDE.md                  # Hướng dẫn vai trò Business Analyst & QA Auditor
 ├── components.json            # Cấu hình shadcn Base UI
-├── GEMINI.md                  # Hướng dẫn mô hình BA + QA Auditor
-├── justdoit.md                # Task thực thi hiện tại (State Machine)
+├── DEV.md                     # Quy tắc chung cho Developer Agent
 ├── package.json
 └── tsconfig.json
 ```
@@ -79,16 +79,11 @@ Mở [http://localhost:3000](http://localhost:3000) trên trình duyệt.
 
 ## Workflow Phát triển (BA + Dev Agent)
 
-Dự án áp dụng mô hình hai tầng:
+Dự án áp dụng mô hình phối hợp hai tầng:
 
-1. **Business Analyst & QA Auditor (Gemini)**: Soạn task, xác định acceptance criteria và nghiệm thu code qua [`justdoit.md`](justdoit.md) và [`GEMINI.md`](GEMINI.md).
-2. **Developer Agent (OpenCode)**: Viết code tự động theo task được duyệt.
-
-Để kích hoạt runner theo dõi task:
-
-```bash
-npm run watch:task
-```
+1. **Business Analyst & QA Auditor (Claude)**: Soạn task, xác định acceptance criteria và nghiệm thu code (quy tắc trong [`CLAUDE.md`](CLAUDE.md)).
+2. **Developer Agent (Gemini)**: Viết code tự động theo task được giao (quy tắc trong [`DEV.md`](DEV.md), nạp qua `GEMINI.md`).
+3. **Điều phối & Kiến trúc**: Giao task qua slot `justdoit.md`, tuân thủ kiến trúc và quyết định kỹ thuật trong [`AGENTS.md`](AGENTS.md), lưu trữ lịch sử task trong [`docs/README.md`](docs/README.md).
 
 ---
 
@@ -120,10 +115,10 @@ npm run format
 Toàn bộ nội dung hiển thị được quản lý tập trung trong thư mục `src/data/`, không hard-code trong JSX:
 
 - **Thông tin cá nhân & Giới thiệu**: Chỉnh sửa [`src/data/profile.ts`](src/data/profile.ts) (họ tên, chức danh, câu tóm tắt, số năm kinh nghiệm, định hướng).
-- **Dự án & Case Studies**: Chỉnh sửa [`src/data/projects.ts`](src/data/projects.ts) (vấn đề nghiệp vụ, giải pháp AI, stack kỹ thuật, kiến trúc, link demo/GitHub).
+- **Hội thoại & Gợi ý trang Ask**: Chỉnh sửa [`src/data/ask.ts`](src/data/ask.ts) (câu hỏi gợi ý và câu trả lời theo kịch bản của trang chủ).
+- **Dự án & Case Studies**: Chỉnh sửa [`src/data/projects.ts`](src/data/projects.ts) (vấn đề nghiệp vụ, giải pháp AI, stack kỹ thuật, sơ đồ kiến trúc trong trường `architecture`, link demo/GitHub).
 - **Kinh nghiệm làm việc**: Chỉnh sửa [`src/data/experience.ts`](src/data/experience.ts).
 - **Kỹ năng & Chuyên môn AI**: Chỉnh sửa [`src/data/skills.ts`](src/data/skills.ts).
-- **Quy trình làm việc (AI Workflow)**: Chỉnh sửa [`src/data/workflows.ts`](src/data/workflows.ts).
 - **Liên kết mạng xã hội**: Chỉnh sửa [`src/data/socialLinks.ts`](src/data/socialLinks.ts).
 - **Học vấn & Chứng chỉ**: Chỉnh sửa [`src/data/education.ts`](src/data/education.ts) và [`src/data/certifications.ts`](src/data/certifications.ts).
 - **Cập nhật CV**: Thay thế file tại [`public/resume.pdf`](public/resume.pdf) (giữ nguyên tên file để link tải không bị hỏng).

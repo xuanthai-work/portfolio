@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "watch:task": "powershell -ExecutionPolicy Bypass -File ./scripts/watch-and-inject.ps1"
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

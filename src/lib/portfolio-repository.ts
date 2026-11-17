@@ -8,13 +8,11 @@ import { experiences } from "@/data/experience";
 import { footerNavigation, navigation } from "@/data/navigation";
 import { profile } from "@/data/profile";
 import {
-  featuredProjects,
   getProjectBySlug as findProjectBySlug,
   projects,
 } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
 import { socialLinks } from "@/data/socialLinks";
-import { workflows } from "@/data/workflows";
 import type {
   AskContent,
   AskPrompt,
@@ -27,7 +25,6 @@ import type {
   SectionContent,
   SkillCategory,
   SocialLink,
-  WorkflowItem,
 } from "@/types";
 
 export const getProfile = cache(async (): Promise<Profile> => profile);
@@ -51,20 +48,12 @@ export const getSkillCategories = cache(
 
 export const getProjects = cache(async (): Promise<Project[]> => projects);
 
-export const getFeaturedProjects = cache(
-  async (): Promise<Project[]> => featuredProjects,
-);
-
 export const getProjectBySlug = cache(
   async (slug: string): Promise<Project | undefined> => findProjectBySlug(slug),
 );
 
 export const getProjectSlugs = cache(async (): Promise<string[]> =>
   projects.map(({ slug }) => slug),
-);
-
-export const getWorkflows = cache(
-  async (): Promise<WorkflowItem[]> => workflows,
 );
 
 export const getExperiences = cache(

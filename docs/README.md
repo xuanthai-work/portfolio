@@ -21,3 +21,4 @@ Tài liệu dự án. Task đã nghiệm thu PASS được lưu trong `tasks/`, 
 | TASK-013 | Trang dự án mới với System Map tương tác                                                       | 2026-11-17 | **PASS** | [link](tasks/task-013-project-page-system-map.md)                    |
 | TASK-014 | Trang /projects dạng danh mục đánh số                                                          | 2026-11-17 | **PASS** | [link](tasks/task-014-projects-index.md)                             |
 | TASK-015 | Trang /about kiểu CV, PageSection dùng chung, link About ở header/footer/rail/sitemap          | 2026-11-17 | **PASS** | [link](tasks/task-015-about-page.md)                                 |
+| TASK-016 | Dọn code chết sau đợt làm lại giao diện (component, dữ liệu, token, runner cũ, lint)           | 2026-11-17 | **PASS** | [link](tasks/task-016-remove-dead-code.md)                           |

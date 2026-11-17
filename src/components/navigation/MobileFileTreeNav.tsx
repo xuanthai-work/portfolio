@@ -4,7 +4,6 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { FileTree } from "@/components/navigation/FileTree";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import type { Profile, Project } from "@/types";
 
 interface MobileFileTreeNavProps {
@@ -59,7 +58,6 @@ export function MobileFileTreeNav({
         </div>
 
         <div className="ml-auto flex items-center gap-1.5">
-          <ThemeToggle />
           <button
             aria-expanded={open}
             aria-label="Open file tree navigation"

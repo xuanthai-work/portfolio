@@ -2,7 +2,6 @@ import { Download } from "lucide-react";
 
 import { FileTree } from "@/components/navigation/FileTree";
 import { ButtonLink } from "@/components/ui/Button";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import type { Profile, Project } from "@/types";
 
 interface FileTreeSidebarProps {
@@ -78,7 +77,6 @@ export function FileTreeSidebar({ projects, profile }: FileTreeSidebarProps) {
           <Download aria-hidden="true" size={14} strokeWidth={1.8} />
           Download CV
         </ButtonLink>
-        <ThemeToggle />
       </div>
     </aside>
   );

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Crimson_Pro, Fraunces, JetBrains_Mono } from "next/font/google";
+import {
+  Instrument_Serif,
+  Inter_Tight,
+  JetBrains_Mono,
+} from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
 import { FileTreeSidebar } from "@/components/navigation/FileTreeSidebar";
@@ -10,16 +14,17 @@ import { getSiteConfig } from "@/lib/site";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const fraunces = Fraunces({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
+  weight: "400",
   style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+  display: "swap",
 });
 
-const crimsonPro = Crimson_Pro({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-crimson",
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -69,14 +74,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const themeScript = `
-  try {
-    const saved = localStorage.getItem("theme");
-    const dark = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList.toggle("dark", dark);
-  } catch {}
-`;
-
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -87,16 +84,12 @@ export default async function RootLayout({
   return (
     <html
       className={cn(
-        fraunces.variable,
-        crimsonPro.variable,
+        instrumentSerif.variable,
+        interTight.variable,
         jetbrainsMono.variable,
       )}
       lang="en"
-      suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body>
         <a
           className="fixed top-3 left-3 z-50 -translate-y-20 rounded-xl bg-[var(--foreground)] px-4 py-3 text-sm font-semibold text-[var(--background)] transition focus:translate-y-0"

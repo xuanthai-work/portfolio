@@ -4,7 +4,6 @@ import Link from "next/link";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getNavigation, getProfile } from "@/lib/portfolio-repository";
 
 export async function Header() {
@@ -39,7 +38,6 @@ export async function Header() {
           </ul>
         </nav>
 
-        <ThemeToggle />
         <ButtonLink
           className="hidden sm:inline-flex"
           download

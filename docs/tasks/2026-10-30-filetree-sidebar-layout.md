@@ -20,7 +20,9 @@
 ---
 
 ## 1. Objective & Requirements
+
 Chuyển đổi triệt để bố cục toàn trang sang mô hình **FileTree Sidebar Navigation** chuẩn xác theo repo `dfmontoya02/danny-portfolio` và ảnh chụp màn hình do người dùng cung cấp:
+
 - **Desktop Layout**: Sidebar cố định 22rem bên trái (`fixed top-0 left-0 w-[22rem] h-screen`) chứa Cây thư mục VSCode / MacOS Finder, nội dung chính cuộn bên phải (`lg:pl-[22rem]`).
 - **FileTree Navigation**: Profile header (avatar viền gradient, tên, `PORTFOLIO`), 3 nút chấm MacOS (đỏ, vàng, xanh), nhãn `explorer`, cây thư mục đóng/mở được, icon theo đuôi tệp, cuộn mượt đến section và phát sự kiện mở đúng gáy sách trong Bookshelf khi bấm file dự án.
 - **Mobile Experience**: Top bar dính kèm avatar + drawer toàn màn hình chứa FileTree.
@@ -29,6 +31,7 @@ Chuyển đổi triệt để bố cục toàn trang sang mô hình **FileTree S
 ---
 
 ## 2. Changes Made
+
 1. **`src/components/navigation/FileTree.tsx` & `nav-tree.ts`**:
    - Xây dựng cây thư mục đầy đủ phản ánh 10 dự án (`gslide.jsx`, `ai-meeting-note.jsx`, `fooday.jsx`, `carms.jsx`, `classchedule.jsx`, `bsche.jsx`, `techter.jsx`, `techvify-recruitment.jsx`, `neuralnews.jsx`, `ai-scoring.py`) cùng các section `home.jsx`, `about.md`, `skills/toolkit.jsx`, `experience.md`, `workflows/...`, `education/...`, `contact.jsx`.
    - Trạng thái đóng/mở thư mục mượt mà, đường kẻ dọc thụt lề chuẩn phong cách IDE, highlight theo dõi section khi người dùng cuộn trang (`IntersectionObserver`).
@@ -46,6 +49,7 @@ Chuyển đổi triệt để bố cục toàn trang sang mô hình **FileTree S
 ---
 
 ## 3. Verification Gates Results
+
 - `npm run type-check`: **PASS** (0 errors)
 - `npm run lint`: **PASS** (0 errors, 1 warning không liên quan từ cache)
 - `npm run build`: **PASS** (Next.js 16 App Router build thành công)

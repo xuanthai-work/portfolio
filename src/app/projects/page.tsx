@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
-import { ProjectCard } from "@/components/projects/ProjectCard";
-import { Container } from "@/components/ui/Container";
-import { EmptyState } from "@/components/ui/EmptyState";
-import { getProjects } from "@/lib/portfolio-repository";
+import { ProjectIndex } from "@/components/projects/ProjectIndex";
+import { getProjects, getSectionContent } from "@/lib/portfolio-repository";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -13,40 +11,31 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const [projects, sectionContent] = await Promise.all([
+    getProjects(),
+    getSectionContent(),
+  ]);
 
   return (
-    <main>
-      <Container className="py-14 sm:py-20">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl font-semibold tracking-[-0.045em] text-balance sm:text-5xl">
-            Project case studies
-          </h1>
-          <p className="mt-5 leading-7 text-[var(--muted-foreground)]">
-            Explore the business context, architecture, implementation
-            decisions, challenges, and verified outcomes behind each solution.
+    <main className="mx-auto w-full max-w-6xl px-5 pt-10 pb-20 sm:px-8 lg:px-10 lg:pt-16">
+      <p className="font-mono text-xs tracking-[0.14em] text-[var(--muted-foreground)] uppercase">
+        Index · {projects.length} case studies
+      </p>
+      <h1 className="font-heading mt-4 max-w-4xl text-5xl leading-[1.05] tracking-[-0.02em] text-balance sm:text-7xl">
+        {sectionContent.projects.title}
+      </h1>
+      <p className="mt-6 max-w-2xl text-xl leading-8 text-[var(--muted-foreground)]">
+        {sectionContent.projects.description}
+      </p>
+      <div className="mt-14">
+        {projects.length ? (
+          <ProjectIndex projects={projects} />
+        ) : (
+          <p className="text-[var(--muted-foreground)]">
+            No case studies published yet.
           </p>
-        </div>
-        <div className="mt-12">
-          {projects.length ? (
-            <div className="grid gap-6 lg:grid-cols-2">
-              {projects.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  priority={index === 0}
-                  project={project}
-                  showFeaturedBadge
-                />
-              ))}
-            </div>
-          ) : (
-            <EmptyState
-              description="Add your first project to the database."
-              title="No projects yet"
-            />
-          )}
-        </div>
-      </Container>
+        )}
+      </div>
     </main>
   );
 }

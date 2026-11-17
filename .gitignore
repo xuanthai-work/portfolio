@@ -18,4 +18,4 @@ docs/logs/*
 
 # BA workflow files
 GEMINI.md
-justdoit.md
+justdoit*.md

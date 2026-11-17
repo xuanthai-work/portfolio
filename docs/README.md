@@ -1,22 +1,15 @@
-# Project Documentation & Task Archive
+# Documentation — ai-solution-engineer-portfolio
 
-Thư mục lưu trữ tài liệu kỹ thuật và các task đã hoàn thành sau khi vượt qua quy trình QA Audit.
+Tài liệu dự án. Task đã nghiệm thu PASS được lưu trong `tasks/`, log thực thi (nếu có) trong `logs/`.
 
----
+## Task History
 
-## Cấu trúc thư mục
-
-- `docs/tasks/`: Lưu trữ các task sau khi Developer hoàn thành và QA Audit PASS.
-- `docs/logs/`: Lưu log thực thi nếu có.
-
----
-
-## Danh sách Task đã hoàn thành
-
-1. [2026-10-30 - Cập nhật Thông tin cá nhân, Kinh nghiệm (Experience), Kỹ năng (Skills) và Học vấn/Chứng chỉ theo CV mới](tasks/2026-10-30-update-profile-experience-cv.md)
-2. [2026-10-30 - Cập nhật & Thêm mới các dự án Doanh nghiệp (Company Projects - Gapo & Techvify) và làm sạch Content Sections](tasks/2026-10-30-company-projects-and-content.md)
-3. [2026-10-30 - Cập nhật & Thêm mới các dự án Cá nhân (Personal Projects - Stuff & Linh) và Xóa sạch 100% Placeholder còn lại](tasks/2026-10-30-personal-projects-and-zero-placeholders.md)
-4. [2026-10-30 - Nâng cấp Giao diện Thị giác chuẩn Modern High-End Developer Portfolio (Hero Tech Aesthetics, Project Cards & Workflow Visualizer)](tasks/2026-10-30-visual-aesthetics-and-micro-interactions.md)
-5. [2026-10-30 - Tái thiết kế toàn diện Portfolio theo phong cách Editorial & Storytelling (Fraunces + Crimson Pro, Warm Parchment)](tasks/2026-10-30-editorial-storytelling-redesign.md)
-6. [2026-10-30 - Kệ sách tương tác Painterly Bookshelf cho phần Projects (Studio Ghibli / Danny Montoya Aesthetic)](tasks/2026-10-30-painterly-bookshelf-projects.md)
-7. [2026-10-30 - FileTree Sidebar Navigation & Painterly Layout (Chuẩn xác 100% Danny Montoya Aesthetic)](tasks/2026-10-30-filetree-sidebar-layout.md)
+| Task ID  | Tên task                                                                                       | Ngày       | Kết quả  | Link                                                                 |
+| :------- | :--------------------------------------------------------------------------------------------- | :--------- | :------- | :------------------------------------------------------------------- |
+| TASK-001 | Cập nhật thông tin cá nhân, kinh nghiệm, kỹ năng, học vấn/chứng chỉ theo CV mới                | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-update-profile-experience-cv.md)             |
+| TASK-002 | Cập nhật & thêm dự án doanh nghiệp (Gapo & Techvify), làm sạch content sections                | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-company-projects-and-content.md)             |
+| TASK-003 | Cập nhật & thêm dự án cá nhân, xóa sạch placeholder còn lại                                    | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-personal-projects-and-zero-placeholders.md)  |
+| TASK-004 | Nâng cấp giao diện Modern High-End (Hero, Project Cards, Workflow Visualizer)                  | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-visual-aesthetics-and-micro-interactions.md) |
+| TASK-005 | Tái thiết kế theo phong cách Editorial & Storytelling (Fraunces + Crimson Pro, Warm Parchment) | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-editorial-storytelling-redesign.md)          |
+| TASK-006 | Kệ sách tương tác Painterly Bookshelf cho phần Projects                                        | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-painterly-bookshelf-projects.md)             |
+| TASK-007 | FileTree Sidebar Navigation & Painterly Layout                                                 | 2026-10-30 | **PASS** | [link](tasks/2026-10-30-filetree-sidebar-layout.md)                  |

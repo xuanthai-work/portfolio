@@ -18,3 +18,4 @@ Tài liệu dự án. Task đã nghiệm thu PASS được lưu trong `tasks/`, 
 | TASK-010 | Tầng dữ liệu cho trang Ask (câu hỏi kịch bản, đính kèm, metrics dự án)                         | 2026-11-17 | **PASS** | [link](tasks/task-010-ask-data-layer.md)                             |
 | TASK-011 | Giao diện trang chủ Ask (hội thoại kịch bản, thẻ đính kèm, rail Skip the chat)                 | 2026-11-17 | **PASS** | [link](tasks/task-011-ask-home-ui.md)                                |
 | TASK-012 | Dữ liệu sơ đồ kiến trúc (System Map) cho 3 dự án nổi bật                                       | 2026-11-17 | **PASS** | [link](tasks/task-012-architecture-map-data.md)                      |
+| TASK-013 | Trang dự án mới với System Map tương tác                                                       | 2026-11-17 | **PASS** | [link](tasks/task-013-project-page-system-map.md)                    |
